@@ -1,8 +1,50 @@
+@import "tailwindcss";
 @import './themes.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+
+  --animate-fade-in: fadeIn 0.6s ease-out forwards;
+  --animate-slide-up: slideUp 0.5s ease-out forwards;
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Utilidades de tema via CSS variables — compatibles con Tailwind v4 */
+@utility bg-theme-bg      { background-color: rgb(var(--theme-bg)); }
+@utility bg-theme-surface { background-color: rgb(var(--theme-surface)); }
+@utility bg-theme-border  { background-color: rgb(var(--theme-border)); }
+@utility bg-theme-accent  { background-color: rgb(var(--theme-accent)); }
+@utility bg-theme-accent2 { background-color: rgb(var(--theme-accent2)); }
+
+@utility text-theme-text   { color: rgb(var(--theme-text)); }
+@utility text-theme-muted  { color: rgb(var(--theme-muted)); }
+@utility text-theme-accent { color: rgb(var(--theme-accent)); }
+@utility text-theme-bg     { color: rgb(var(--theme-bg)); }
+
+@utility border-theme-border { border-color: rgb(var(--theme-border)); }
+@utility border-theme-accent { border-color: rgb(var(--theme-accent)); }
+
+@utility outline-theme-accent { outline-color: rgb(var(--theme-accent)); }
+
+/* Variantes con opacidad para hover/decorativas */
+@utility bg-theme-accent\/10  { background-color: rgb(var(--theme-accent) / 0.10); }
+@utility bg-theme-accent\/20  { background-color: rgb(var(--theme-accent) / 0.20); }
+@utility bg-theme-bg\/80      { background-color: rgb(var(--theme-bg) / 0.80); }
+@utility bg-theme-bg\/95      { background-color: rgb(var(--theme-bg) / 0.95); }
+@utility bg-theme-surface\/40 { background-color: rgb(var(--theme-surface) / 0.40); }
+@utility bg-theme-border\/50  { background-color: rgb(var(--theme-border) / 0.50); }
+
+@utility border-theme-border\/60 { border-color: rgb(var(--theme-border) / 0.60); }
+@utility border-theme-accent\/40 { border-color: rgb(var(--theme-accent) / 0.40); }
 
 @layer base {
   html {
@@ -11,43 +53,78 @@
   }
 
   body {
-    @apply bg-theme-bg text-theme-text font-sans;
+    background-color: rgb(var(--theme-bg));
+    color: rgb(var(--theme-text));
+    font-family: Inter, system-ui, sans-serif;
   }
 
   h1, h2, h3, h4 {
-    @apply font-display;
+    font-family: "Playfair Display", Georgia, serif;
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-theme-accent;
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: rgb(var(--theme-accent));
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm
-           bg-theme-accent text-theme-bg
-           hover:bg-theme-accent2 active:scale-95
-           transition-all duration-200 focus-visible:outline-2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    background-color: rgb(var(--theme-accent));
+    color: rgb(var(--theme-bg));
+    transition: all 0.2s;
+    &:hover { background-color: rgb(var(--theme-accent2)); }
+    &:active { scale: 0.95; }
+    &:focus-visible { outline-width: 2px; }
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm
-           border border-theme-accent text-theme-accent
-           hover:bg-theme-accent hover:text-theme-bg active:scale-95
-           transition-all duration-200;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border: 1px solid rgb(var(--theme-accent));
+    color: rgb(var(--theme-accent));
+    transition: all 0.2s;
+    &:hover {
+      background-color: rgb(var(--theme-accent));
+      color: rgb(var(--theme-bg));
+    }
+    &:active { scale: 0.95; }
   }
 
   .card {
-    @apply bg-theme-surface border border-theme-border rounded-2xl overflow-hidden
-           hover:border-theme-accent transition-colors duration-300;
+    background-color: rgb(var(--theme-surface));
+    border: 1px solid rgb(var(--theme-border));
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: border-color 0.3s;
+    &:hover { border-color: rgb(var(--theme-accent)); }
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-display font-bold text-theme-text;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: rgb(var(--theme-text));
+    @media (min-width: 768px) { font-size: 2.25rem; }
   }
 
   .section-subtitle {
-    @apply text-theme-muted text-lg mt-3 max-w-2xl;
+    color: rgb(var(--theme-muted));
+    font-size: 1.125rem;
+    margin-top: 0.75rem;
+    max-width: 42rem;
   }
 }

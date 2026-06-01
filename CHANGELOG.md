@@ -6,6 +6,21 @@ Versionado según [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
+## [0.3.0] — 2026-06-01
+
+### Changed
+
+- Migrado de `@astrojs/tailwind` + Tailwind CSS v3 a `@tailwindcss/vite` + Tailwind CSS v4, compatible con Astro 6
+- `astro.config.mjs` actualizado para usar el plugin Vite en lugar de la integración de Astro
+- `src/styles/global.css` reescrito con `@utility` (API de Tailwind v4) para mantener el sistema de 5 temas dinámicos via CSS custom properties
+- Eliminado `tailwind.config.mjs` (reemplazado por `@theme` en el CSS)
+
+### Fixed
+
+- Error de CI en GitHub Actions: `npm ci` fallaba por incompatibilidad de peer deps entre `@astrojs/tailwind@6` y `astro@6`
+
+---
+
 ## [0.2.0] — 2026-06-01
 
 ### Added
