@@ -1,0 +1,91 @@
+---
+import { THEMES, DEFAULT_THEME, THEME_STORAGE_KEY } from '@/lib/themes';
+---
+
+<div class="relative" id="theme-switcher">
+  <button
+    id="theme-toggle"
+    aria-label="Cambiar tema de color"
+    aria-expanded="false"
+    aria-haspopup="true"
+    class="flex items-center gap-2 px-3 py-2 rounded-xl border border-theme-border
+           text-theme-muted hover:text-theme-text hover:border-theme-accent
+           text-sm transition-colors duration-200"
+  >
+    <span id="theme-current-emoji" aria-hidden="true">🎸</span>
+    <span id="theme-current-label" class="hidden sm:inline">Cálida</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+         stroke-linejoin="round" aria-hidden="true">
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
+  </button>
+
+  <div
+    id="theme-menu"
+    role="menu"
+    aria-label="Seleccionar tema"
+    class="absolute right-0 mt-2 w-48 rounded-2xl border border-theme-border
+           bg-theme-surface shadow-xl z-50 overflow-hidden hidden"
+  >
+    {THEMES.map((theme) => (
+      <button
+        role="menuitem"
+        data-theme-id={theme.id}
+        class="theme-option w-full flex items-center gap-3 px-4 py-3 text-sm text-left
+               text-theme-text hover:bg-theme-accent/10 hover:text-theme-accent
+               transition-colors duration-150"
+      >
+        <span aria-hidden="true">{theme.emoji}</span>
+        <div>
+          <div class="font-semibold leading-tight">{theme.label}</div>
+          <div class="text-xs text-theme-muted leading-tight">{theme.description}</div>
+        </div>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script define:vars={{ THEMES, DEFAULT_THEME, THEME_STORAGE_KEY }}>
+  const stored = localStorage.getItem(THEME_STORAGE_KEY) ?? DEFAULT_THEME;
+  applyTheme(stored);
+
+  const toggle = document.getElementById('theme-toggle');
+  const menu = document.getElementById('theme-menu');
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden', expanded);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!document.getElementById('theme-switcher')?.contains(e.target)) {
+      toggle?.setAttribute('aria-expanded', 'false');
+      menu?.classList.add('hidden');
+    }
+  });
+
+  document.querySelectorAll('.theme-option').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-theme-id');
+      if (id) {
+        applyTheme(id);
+        localStorage.setItem(THEME_STORAGE_KEY, id);
+        toggle?.setAttribute('aria-expanded', 'false');
+        menu?.classList.add('hidden');
+      }
+    });
+  });
+
+  function applyTheme(id) {
+    document.documentElement.setAttribute('data-theme', id);
+    const theme = THEMES.find((t) => t.id === id);
+    if (theme) {
+      const emoji = document.getElementById('theme-current-emoji');
+      const label = document.getElementById('theme-current-label');
+      if (emoji) emoji.textContent = theme.emoji;
+      if (label) label.textContent = theme.label;
+    }
+  }
+</script>

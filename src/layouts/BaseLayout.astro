@@ -1,0 +1,210 @@
+---
+import '@/styles/global.css';
+import ThemeSwitcher from '@/components/ui/ThemeSwitcher.astro';
+import { DEFAULT_THEME, THEME_STORAGE_KEY } from '@/lib/themes';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Elinad Cuerdas — Clases y Talleres de Guitarra',
+  description = 'Aprende guitarra con Elinad: cursos personalizados, talleres grupales y clases para todos los niveles en Santiago de Chile.',
+  image = '/og-image.jpg',
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="es" data-theme={DEFAULT_THEME}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fuentes (Google Fonts con display=swap para rendimiento) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Aplicar tema guardado ANTES de pintar (evita flash) -->
+    <script is:inline define:vars={{ THEME_STORAGE_KEY, DEFAULT_THEME }}>
+      (function () {
+        const saved = localStorage.getItem(THEME_STORAGE_KEY) ?? DEFAULT_THEME;
+        document.documentElement.setAttribute('data-theme', saved);
+      })();
+    </script>
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+    <!-- ===== HEADER / NAVBAR ===== -->
+    <header
+      id="site-header"
+      class="sticky top-0 z-40 w-full border-b border-theme-border/60
+             bg-theme-bg/80 backdrop-blur-md"
+    >
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <!-- Logo / Nombre -->
+        <a href="/" class="flex items-center gap-2.5 group" aria-label="Inicio — Elinad Cuerdas">
+          <span
+            class="text-2xl leading-none select-none group-hover:scale-110 transition-transform"
+            aria-hidden="true"
+          >🎸</span>
+          <span class="font-display font-bold text-lg text-theme-text group-hover:text-theme-accent transition-colors">
+            Elinad Cuerdas
+          </span>
+        </a>
+
+        <!-- Navegación desktop -->
+        <nav class="hidden md:flex items-center gap-6" aria-label="Navegación principal">
+          <a href="#cursos"      class="text-sm text-theme-muted hover:text-theme-text transition-colors">Cursos</a>
+          <a href="#sobre-mi"   class="text-sm text-theme-muted hover:text-theme-text transition-colors">Sobre mí</a>
+          <a href="#testimonios" class="text-sm text-theme-muted hover:text-theme-text transition-colors">Testimonios</a>
+          <a href="#contacto"   class="text-sm text-theme-muted hover:text-theme-text transition-colors">Contacto</a>
+        </nav>
+
+        <!-- Acciones -->
+        <div class="flex items-center gap-3">
+          <ThemeSwitcher />
+
+          <!-- CTA WhatsApp -->
+          <a
+            href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de guitarra.')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary hidden sm:inline-flex text-xs px-4 py-2"
+            aria-label="Contactar por WhatsApp"
+          >
+            Escríbeme
+          </a>
+
+          <!-- Hamburger mobile -->
+          <button
+            id="mobile-menu-toggle"
+            class="md:hidden p-2 rounded-lg text-theme-muted hover:text-theme-text
+                   hover:bg-theme-surface transition-colors"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg id="icon-open"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="3" y1="6"  x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+            <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 viewBox="0 0 24 24" class="hidden" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menú mobile -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden border-t border-theme-border bg-theme-bg/95 backdrop-blur-md"
+        aria-label="Menú móvil"
+      >
+        <nav class="flex flex-col px-4 py-4 gap-1">
+          <a href="#cursos"      class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Cursos</a>
+          <a href="#sobre-mi"   class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Sobre mí</a>
+          <a href="#testimonios" class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Testimonios</a>
+          <a href="#contacto"   class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Contacto</a>
+          <a
+            href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de guitarra.')}`}
+            target="_blank" rel="noopener noreferrer"
+            class="btn-primary mt-2 justify-center text-xs"
+          >
+            Escríbeme por WhatsApp
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-theme-border mt-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="text-center md:text-left">
+            <span class="font-display font-bold text-theme-text">Elinad Cuerdas</span>
+            <p class="text-xs text-theme-muted mt-1">
+              Clases y talleres de guitarra · Santiago, Chile
+            </p>
+          </div>
+          <div class="flex items-center gap-5 text-xs text-theme-muted">
+            <a href="#cursos" class="hover:text-theme-accent transition-colors">Cursos</a>
+            <a href="#contacto" class="hover:text-theme-accent transition-colors">Contacto</a>
+            <a
+              href={`https://wa.me/56912345678`}
+              target="_blank" rel="noopener noreferrer"
+              class="hover:text-theme-accent transition-colors"
+            >WhatsApp</a>
+          </div>
+          <p class="text-xs text-theme-muted text-center">
+            © {new Date().getFullYear()} Elinad Cuerdas. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile menu script -->
+    <script>
+      const toggle = document.getElementById('mobile-menu-toggle');
+      const menu   = document.getElementById('mobile-menu');
+      const iconOpen  = document.getElementById('icon-open');
+      const iconClose = document.getElementById('icon-close');
+
+      toggle?.addEventListener('click', () => {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        menu?.classList.toggle('hidden', isOpen);
+        iconOpen?.classList.toggle('hidden', !isOpen);
+        iconClose?.classList.toggle('hidden', isOpen);
+      });
+
+      // Cierra el menú al navegar
+      menu?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          toggle?.setAttribute('aria-expanded', 'false');
+          menu.classList.add('hidden');
+          iconOpen?.classList.remove('hidden');
+          iconClose?.classList.add('hidden');
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+@import './themes.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-theme-bg text-theme-text font-sans;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-theme-accent;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm
+           bg-theme-accent text-theme-bg
+           hover:bg-theme-accent2 active:scale-95
+           transition-all duration-200 focus-visible:outline-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm
+           border border-theme-accent text-theme-accent
+           hover:bg-theme-accent hover:text-theme-bg active:scale-95
+           transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-theme-surface border border-theme-border rounded-2xl overflow-hidden
+           hover:border-theme-accent transition-colors duration-300;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-display font-bold text-theme-text;
+  }
+
+  .section-subtitle {
+    @apply text-theme-muted text-lg mt-3 max-w-2xl;
+  }
+}

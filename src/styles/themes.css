@@ -1,0 +1,65 @@
+/* =========================================================
+   SISTEMA DE TEMAS — Elinad Cuerdas
+   Cada tema expone CSS custom properties consumidas por Tailwind.
+   Los valores son tripletas RGB sin alpha para soportar /alpha-value.
+   ========================================================= */
+
+/* ------ 1. CÁLIDA (madera de guitarra) ------ */
+[data-theme="warm"] {
+  --theme-bg:      26 18 8;       /* #1a1208 */
+  --theme-surface: 44 31 14;      /* #2c1f0e */
+  --theme-border:  89 63 29;      /* #593f1d */
+  --theme-text:    245 240 232;   /* #f5f0e8 */
+  --theme-muted:   180 160 130;   /* #b4a082 */
+  --theme-accent:  200 155 60;    /* #c89b3c */
+  --theme-accent2: 232 190 100;   /* #e8be64 */
+}
+
+/* ------ 2. OSCURA ELEGANTE (vino & negro) ------ */
+[data-theme="dark"] {
+  --theme-bg:      13 13 13;      /* #0d0d0d */
+  --theme-surface: 26 26 26;      /* #1a1a1a */
+  --theme-border:  60 20 20;      /* #3c1414 */
+  --theme-text:    240 240 240;   /* #f0f0f0 */
+  --theme-muted:   160 140 140;   /* #a08c8c */
+  --theme-accent:  139 26 26;     /* #8b1a1a */
+  --theme-accent2: 196 60 60;     /* #c43c3c */
+}
+
+/* ------ 3. CLARA Y FRESCA (azul marino) ------ */
+[data-theme="light"] {
+  --theme-bg:      255 255 255;   /* #ffffff */
+  --theme-surface: 241 245 249;   /* #f1f5f9 */
+  --theme-border:  203 213 225;   /* #cbd5e1 */
+  --theme-text:    26 26 46;      /* #1a1a2e */
+  --theme-muted:   100 116 139;   /* #64748b */
+  --theme-accent:  30 58 95;      /* #1e3a5f */
+  --theme-accent2: 59 130 246;    /* #3b82f6 */
+}
+
+/* ------ 4. VANGUARDISTA (púrpura & dorado) ------ */
+[data-theme="avant"] {
+  --theme-bg:      10 8 20;       /* #0a0814 */
+  --theme-surface: 24 18 48;      /* #181230 */
+  --theme-border:  72 48 120;     /* #483078 */
+  --theme-text:    235 230 255;   /* #ebe6ff */
+  --theme-muted:   160 145 200;   /* #a091c8 */
+  --theme-accent:  168 85 247;    /* #a855f7 */
+  --theme-accent2: 245 200 80;    /* #f5c850 */
+}
+
+/* ------ 5. FLUOR / FUTURISTA (neón sobre negro) ------ */
+[data-theme="neon"] {
+  --theme-bg:      0 0 0;         /* #000000 */
+  --theme-surface: 10 10 10;      /* #0a0a0a */
+  --theme-border:  0 230 160;     /* #00e6a0 */
+  --theme-text:    230 255 245;   /* #e6fff5 */
+  --theme-muted:   100 180 150;   /* #64b496 */
+  --theme-accent:  0 230 160;     /* #00e6a0 */
+  --theme-accent2: 230 0 200;     /* #e600c8 */
+}
+
+/* Transición suave al cambiar de tema */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
