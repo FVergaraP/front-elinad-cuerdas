@@ -1,3 +1,7 @@
+# Forzar tracking de workflows (sobreescribe regla global)
+!.github/
+!.github/**
+
 # Dependencies
 node_modules/
 

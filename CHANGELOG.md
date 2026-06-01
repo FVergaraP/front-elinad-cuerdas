@@ -6,6 +6,19 @@ Versionado según [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
+## [0.2.0] — 2026-06-01
+
+### Added
+
+- GitHub Actions workflow `.github/workflows/deploy.yml` para deploy automático a GitHub Pages en cada push a `main`
+- `base: '/front-elinad-cuerdas'` en `astro.config.mjs` para que los assets resuelvan correctamente bajo el subpath de GitHub Pages
+
+### Changed
+
+- `site` en `astro.config.mjs` actualizado a `https://fvergarap.github.io` (URL de GitHub Pages)
+
+---
+
 ## [0.1.0] — 2026-06-01
 
 ### Added
