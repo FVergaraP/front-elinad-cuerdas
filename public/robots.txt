@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fvergarap.github.io/front-elinad-cuerdas/sitemap-index.xml

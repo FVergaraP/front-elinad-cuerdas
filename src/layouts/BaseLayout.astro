@@ -12,8 +12,8 @@ interface Props {
 }
 
 const {
-  title = 'Elinad Cuerdas — Clases y Talleres de Guitarra',
-  description = 'Aprende guitarra con Elinad: cursos personalizados, talleres grupales y clases para todos los niveles en Santiago de Chile.',
+  title = 'Elinad Cuerdas — Clases y Talleres de Bajo y Ukelele',
+  description = 'Aprende bajo y ukelele con Elinad: cursos personalizados, talleres grupales y clases para todos los niveles en Santiago de Chile.',
   image = '/og-image.jpg',
 } = Astro.props;
 
@@ -30,6 +30,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph -->
@@ -38,12 +39,70 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content="Elinad Cuerdas" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- Schema.org: Profesora de bajo y ukelele / Negocio local -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": `${Astro.site}#person`,
+          "name": "Elinad",
+          "jobTitle": "Profesora de Bajo y Ukelele",
+          "description": "Profesora de bajo y ukelele con más de 10 años de experiencia en Santiago de Chile. Clases personalizadas, talleres grupales y modalidad online.",
+          "url": String(Astro.site),
+          "sameAs": [
+            "https://www.instagram.com/elinadbass/",
+            "https://www.tiktok.com/@elinad.bass"
+          ]
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": `${Astro.site}#business`,
+          "name": "Elinad Cuerdas",
+          "description": "Clases y talleres de bajo y ukelele en Santiago de Chile. Presencial, online o híbrido para todos los niveles.",
+          "url": String(Astro.site),
+          "telephone": "+56965017566",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Santiago",
+            "addressRegion": "Región Metropolitana",
+            "addressCountry": "CL"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -33.4489,
+            "longitude": -70.6693
+          },
+          "priceRange": "$$",
+          "currenciesAccepted": "CLP",
+          "paymentAccepted": "Transferencia bancaria, efectivo",
+          "openingHours": "Mo-Sa 09:00-21:00",
+          "sameAs": [
+            "https://www.instagram.com/elinadbass/",
+            "https://www.tiktok.com/@elinad.bass"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Cursos de bajo y ukelele",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Clases de bajo eléctrico para principiantes" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Clases de bajo intermedio" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Taller de ukelele" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Clases de bajo y ukelele online" } }
+            ]
+          }
+        }
+      ]
+    })} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -125,7 +184,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
           <!-- CTA WhatsApp -->
           <a
-            href={`https://wa.me/56965017566?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de guitarra.')}`}
+            href={`https://wa.me/56965017566?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de bajo y ukelele.')}`}
             target="_blank"
             rel="noopener noreferrer"
             class="btn-primary hidden sm:inline-flex text-xs px-4 py-2"
@@ -169,7 +228,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
           <a href="#testimonios" class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Testimonios</a>
           <a href="#contacto"    class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Contacto</a>
           <a
-            href={`https://wa.me/56965017566?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de guitarra.')}`}
+            href={`https://wa.me/56965017566?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de bajo y ukelele.')}`}
             target="_blank" rel="noopener noreferrer"
             class="btn-primary mt-2 justify-center text-xs"
           >
@@ -214,7 +273,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
           <div class="text-center md:text-left">
             <span class="font-display font-bold text-theme-text">Elinad Cuerdas</span>
             <p class="text-xs text-theme-muted mt-1">
-              Clases y talleres de guitarra · Santiago, Chile
+              Clases y talleres de bajo y ukelele · Santiago, Chile
             </p>
           </div>
           <div class="flex items-center gap-5 text-xs text-theme-muted">
