@@ -59,6 +59,17 @@
   --theme-accent2: 230 0 200;     /* #e600c8 */
 }
 
+/* ------ 6. PROFESIONAL (azul marino & dorado) ------ */
+[data-theme="pro"] {
+  --theme-bg:      255 255 255;   /* #FFFFFF */
+  --theme-surface: 248 250 252;   /* #F8FAFC */
+  --theme-border:  226 232 240;   /* #E2E8F0 */
+  --theme-text:    30 41 59;      /* #1E293B */
+  --theme-muted:   100 116 139;   /* #64748B */
+  --theme-accent:  212 163 115;   /* #D4A373 */
+  --theme-accent2: 180 130 85;    /* #B48255 */
+}
+
 /* Transición suave al cambiar de tema */
 *, *::before, *::after {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;

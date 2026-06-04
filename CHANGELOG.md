@@ -6,6 +6,24 @@ Versionado según [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
+## [0.4.0] — 2026-06-04
+
+### Added
+
+- Paleta de color **Profesional** (`pro`): fondo blanco, gris muy claro `#F8FAFC`, azul marino `#1E293B` y dorado suave `#D4A373`
+- Sistema de **4 tipografías** intercambiables: Inter, Montserrat, Poppins, Lato — persistidas en `localStorage`
+- Componente `FontSwitcher.astro` en el navbar, al lado del ThemeSwitcher
+- `src/lib/fonts.ts` con definición tipada de las fuentes disponibles
+- Carga de todas las fuentes en un solo request a Google Fonts (sin FOUT al cambiar)
+- Script anti-flash que aplica tema Y fuente antes del primer paint
+
+### Changed
+
+- `deploy.yml` ahora ejecuta el build también en Pull Requests (`pull_request: branches: [main]`), pero solo despliega desde `main` — permite validar el build en PRs antes de mergear
+- `concurrency.group` diferenciado por rama (`pages-${{ github.ref }}`) para que PRs no cancelen el deploy de main
+
+---
+
 ## [0.3.0] — 2026-06-01
 
 ### Changed

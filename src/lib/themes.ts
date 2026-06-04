@@ -1,4 +1,4 @@
-export type ThemeId = 'warm' | 'dark' | 'light' | 'avant' | 'neon';
+export type ThemeId = 'warm' | 'dark' | 'light' | 'avant' | 'neon' | 'pro';
 
 export interface Theme {
   id: ThemeId;
@@ -13,6 +13,7 @@ export const THEMES: Theme[] = [
   { id: 'light', label: 'Fresca',       emoji: '☀️', description: 'Azul marino' },
   { id: 'avant', label: 'Vanguardista', emoji: '🔮', description: 'Púrpura & oro' },
   { id: 'neon',  label: 'Futurista',    emoji: '⚡', description: 'Neón & negro' },
+  { id: 'pro',   label: 'Profesional',  emoji: '💼', description: 'Azul & dorado' },
 ];
 
 export const DEFAULT_THEME: ThemeId = 'warm';

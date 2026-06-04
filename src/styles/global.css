@@ -50,12 +50,14 @@
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    /* Fuente por defecto — sobreescrita por FontSwitcher via --font-body */
+    --font-body: Inter, system-ui, sans-serif;
   }
 
   body {
     background-color: rgb(var(--theme-bg));
     color: rgb(var(--theme-text));
-    font-family: Inter, system-ui, sans-serif;
+    font-family: var(--font-body);
   }
 
   h1, h2, h3, h4 {
