@@ -1,0 +1,92 @@
+---
+import { FONTS, DEFAULT_FONT, FONT_STORAGE_KEY } from '@/lib/fonts';
+---
+
+<div class="relative" id="font-switcher">
+  <button
+    id="font-toggle"
+    aria-label="Cambiar tipografía"
+    aria-expanded="false"
+    aria-haspopup="true"
+    class="flex items-center gap-2 px-3 py-2 rounded-xl border border-theme-border
+           text-theme-muted hover:text-theme-text hover:border-theme-accent
+           text-sm transition-colors duration-200"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+         stroke-linejoin="round" aria-hidden="true">
+      <polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/>
+      <line x1="12" y1="4" x2="12" y2="20"/>
+    </svg>
+    <span id="font-current-label" class="hidden sm:inline">Inter</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+         stroke-linejoin="round" aria-hidden="true">
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
+  </button>
+
+  <div
+    id="font-menu"
+    role="menu"
+    aria-label="Seleccionar tipografía"
+    class="absolute right-0 mt-2 w-44 rounded-2xl border border-theme-border
+           bg-theme-surface shadow-xl z-50 overflow-hidden hidden"
+  >
+    {FONTS.map((font) => (
+      <button
+        role="menuitem"
+        data-font-id={font.id}
+        data-font-stack={font.stack}
+        class="font-option w-full flex items-center gap-3 px-4 py-3 text-sm text-left
+               text-theme-text hover:bg-theme-accent/10 hover:text-theme-accent
+               transition-colors duration-150"
+      >
+        <span style={`font-family: ${font.stack}; font-weight: 600;`}>{font.label}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script define:vars={{ FONTS, DEFAULT_FONT, FONT_STORAGE_KEY }}>
+  const stored = localStorage.getItem(FONT_STORAGE_KEY) ?? DEFAULT_FONT;
+  applyFont(stored);
+
+  const toggle = document.getElementById('font-toggle');
+  const menu   = document.getElementById('font-menu');
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden', expanded);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!document.getElementById('font-switcher')?.contains(e.target)) {
+      toggle?.setAttribute('aria-expanded', 'false');
+      menu?.classList.add('hidden');
+    }
+  });
+
+  document.querySelectorAll('.font-option').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-font-id');
+      if (id) {
+        applyFont(id);
+        localStorage.setItem(FONT_STORAGE_KEY, id);
+        toggle?.setAttribute('aria-expanded', 'false');
+        menu?.classList.add('hidden');
+      }
+    });
+  });
+
+  function applyFont(id) {
+    document.documentElement.setAttribute('data-font', id);
+    const font = FONTS.find((f) => f.id === id);
+    if (font) {
+      document.documentElement.style.setProperty('--font-body', font.stack);
+      const label = document.getElementById('font-current-label');
+      if (label) label.textContent = font.label;
+    }
+  }
+</script>

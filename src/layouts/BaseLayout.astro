@@ -1,7 +1,9 @@
 ---
 import '@/styles/global.css';
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher.astro';
+import FontSwitcher from '@/components/ui/FontSwitcher.astro';
 import { DEFAULT_THEME, THEME_STORAGE_KEY } from '@/lib/themes';
+import { DEFAULT_FONT, FONT_STORAGE_KEY } from '@/lib/fonts';
 
 interface Props {
   title?: string;
@@ -19,7 +21,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="es" data-theme={DEFAULT_THEME}>
+<html lang="es" data-theme={DEFAULT_THEME} data-font={DEFAULT_FONT}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,19 +48,21 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Fuentes (Google Fonts con display=swap para rendimiento) -->
+    <!-- Todas las fuentes cargadas de una vez para que el cambio sea instantáneo -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Lato:wght@400;700&family=Playfair+Display:wght@700;800&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Aplicar tema guardado ANTES de pintar (evita flash) -->
-    <script is:inline define:vars={{ THEME_STORAGE_KEY, DEFAULT_THEME }}>
+    <!-- Aplicar tema Y fuente guardados ANTES de pintar (evita flash) -->
+    <script is:inline define:vars={{ THEME_STORAGE_KEY, DEFAULT_THEME, FONT_STORAGE_KEY, DEFAULT_FONT }}>
       (function () {
-        const saved = localStorage.getItem(THEME_STORAGE_KEY) ?? DEFAULT_THEME;
-        document.documentElement.setAttribute('data-theme', saved);
+        const theme = localStorage.getItem(THEME_STORAGE_KEY) ?? DEFAULT_THEME;
+        const font  = localStorage.getItem(FONT_STORAGE_KEY)  ?? DEFAULT_FONT;
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-font', font);
       })();
     </script>
   </head>
@@ -84,19 +88,20 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
         <!-- Navegación desktop -->
         <nav class="hidden md:flex items-center gap-6" aria-label="Navegación principal">
-          <a href="#cursos"      class="text-sm text-theme-muted hover:text-theme-text transition-colors">Cursos</a>
-          <a href="#sobre-mi"   class="text-sm text-theme-muted hover:text-theme-text transition-colors">Sobre mí</a>
+          <a href="#cursos"       class="text-sm text-theme-muted hover:text-theme-text transition-colors">Cursos</a>
+          <a href="#sobre-mi"    class="text-sm text-theme-muted hover:text-theme-text transition-colors">Sobre mí</a>
           <a href="#testimonios" class="text-sm text-theme-muted hover:text-theme-text transition-colors">Testimonios</a>
-          <a href="#contacto"   class="text-sm text-theme-muted hover:text-theme-text transition-colors">Contacto</a>
+          <a href="#contacto"    class="text-sm text-theme-muted hover:text-theme-text transition-colors">Contacto</a>
         </nav>
 
         <!-- Acciones -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
           <ThemeSwitcher />
+          <FontSwitcher />
 
           <!-- CTA WhatsApp -->
           <a
-            href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de guitarra.')}`}
+            href={`https://wa.me/56965017566?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de guitarra.')}`}
             target="_blank"
             rel="noopener noreferrer"
             class="btn-primary hidden sm:inline-flex text-xs px-4 py-2"
@@ -114,10 +119,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
             aria-expanded="false"
             aria-controls="mobile-menu"
           >
-            <svg id="icon-open"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+            <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                  viewBox="0 0 24 24" aria-hidden="true">
-              <line x1="3" y1="6"  x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
             </svg>
             <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -135,12 +140,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         aria-label="Menú móvil"
       >
         <nav class="flex flex-col px-4 py-4 gap-1">
-          <a href="#cursos"      class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Cursos</a>
-          <a href="#sobre-mi"   class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Sobre mí</a>
+          <a href="#cursos"       class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Cursos</a>
+          <a href="#sobre-mi"    class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Sobre mí</a>
           <a href="#testimonios" class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Testimonios</a>
-          <a href="#contacto"   class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Contacto</a>
+          <a href="#contacto"    class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Contacto</a>
           <a
-            href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de guitarra.')}`}
+            href={`https://wa.me/56965017566?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de guitarra.')}`}
             target="_blank" rel="noopener noreferrer"
             class="btn-primary mt-2 justify-center text-xs"
           >
@@ -166,10 +171,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
             </p>
           </div>
           <div class="flex items-center gap-5 text-xs text-theme-muted">
-            <a href="#cursos" class="hover:text-theme-accent transition-colors">Cursos</a>
+            <a href="#cursos"   class="hover:text-theme-accent transition-colors">Cursos</a>
             <a href="#contacto" class="hover:text-theme-accent transition-colors">Contacto</a>
             <a
-              href={`https://wa.me/56912345678`}
+              href="https://wa.me/56965017566"
               target="_blank" rel="noopener noreferrer"
               class="hover:text-theme-accent transition-colors"
             >WhatsApp</a>
@@ -183,8 +188,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
     <!-- Mobile menu script -->
     <script>
-      const toggle = document.getElementById('mobile-menu-toggle');
-      const menu   = document.getElementById('mobile-menu');
+      const toggle   = document.getElementById('mobile-menu-toggle');
+      const menu     = document.getElementById('mobile-menu');
       const iconOpen  = document.getElementById('icon-open');
       const iconClose = document.getElementById('icon-close');
 
@@ -196,7 +201,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         iconClose?.classList.toggle('hidden', isOpen);
       });
 
-      // Cierra el menú al navegar
       menu?.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
           toggle?.setAttribute('aria-expanded', 'false');
