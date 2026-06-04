@@ -2,6 +2,9 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CoursesSection from '@/components/sections/CoursesSection.astro';
 import { buildWhatsappUrl } from '@/data/courses';
+import imgHero from '../assets/images/hero-guitarra.jpeg';
+import imgRetrato from '../assets/images/retrato.jpeg';
+import imgEnVivo from '../assets/images/en-vivo.jpeg';
 
 const heroWhatsapp = buildWhatsappUrl(
   'Hola Elinad 👋 Vi tu página y me gustaría saber más sobre las clases de guitarra.'
@@ -17,32 +20,34 @@ const heroWhatsapp = buildWhatsappUrl(
     aria-label="Presentación"
     class="relative overflow-hidden py-24 md:py-36 px-4 sm:px-6 lg:px-8"
   >
-    <!-- Fondo decorativo -->
-    <div
-      class="absolute inset-0 -z-10 pointer-events-none"
-      aria-hidden="true"
-    >
-      <div
-        class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px]
-               bg-theme-accent/10 blur-[100px] rounded-full"
-      ></div>
+    <!-- Foto de fondo -->
+    <div class="absolute inset-0 -z-10" aria-hidden="true">
+      <img
+        src={imgHero.src}
+        alt=""
+        class="w-full h-full object-cover object-center"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <!-- Overlay degradado para legibilidad del texto -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
     </div>
 
     <div class="max-w-4xl mx-auto text-center">
       <span
         class="inline-block text-xs font-semibold uppercase tracking-[0.2em]
-               text-theme-accent border border-theme-accent/40 rounded-full
-               px-4 py-1.5 mb-6"
+               text-theme-accent border border-theme-accent/60 rounded-full
+               px-4 py-1.5 mb-6 backdrop-blur-sm"
       >
         Clases de Guitarra · Santiago, Chile
       </span>
 
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-theme-text leading-tight">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white leading-tight drop-shadow-lg">
         Aprende guitarra
         <span class="text-theme-accent block sm:inline"> con pasión</span>
       </h1>
 
-      <p class="mt-6 text-lg md:text-xl text-theme-muted max-w-2xl mx-auto leading-relaxed">
+      <p class="mt-6 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow">
         Cursos personalizados, talleres grupales y clases para todos los niveles.
         Presencial, online o híbrido — tú eliges el camino, yo te acompaño.
       </p>
@@ -73,9 +78,9 @@ const heroWhatsapp = buildWhatsappUrl(
           { value: '5', label: 'Cursos' },
           { value: '3', label: 'Modalidades' },
         ].map(({ value, label }) => (
-          <div class="text-center">
+          <div class="text-center backdrop-blur-sm bg-white/5 rounded-2xl py-3 px-2">
             <div class="text-2xl font-display font-bold text-theme-accent">{value}</div>
-            <div class="text-xs text-theme-muted mt-0.5">{label}</div>
+            <div class="text-xs text-white/70 mt-0.5">{label}</div>
           </div>
         ))}
       </div>
@@ -97,13 +102,20 @@ const heroWhatsapp = buildWhatsappUrl(
   >
     <div class="max-w-4xl mx-auto">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- Foto placeholder -->
-        <div
-          class="aspect-square rounded-3xl bg-theme-surface border-2 border-theme-border
-                 flex items-center justify-center text-8xl"
-          aria-hidden="true"
-        >
-          🎸
+        <!-- Foto de perfil -->
+        <div class="relative">
+          <div class="aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl ring-4 ring-theme-accent/20">
+            <img
+              src={imgRetrato.src}
+              alt="Elinad con su guitarra"
+              class="w-full h-full object-cover object-top"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <!-- Detalle decorativo -->
+          <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-theme-accent/20 rounded-full blur-2xl -z-10"></div>
+          <div class="absolute -top-4 -left-4 w-16 h-16 bg-theme-accent/10 rounded-full blur-xl -z-10"></div>
         </div>
 
         <!-- Texto -->
@@ -187,6 +199,48 @@ const heroWhatsapp = buildWhatsappUrl(
             </footer>
           </blockquote>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       EN VIVO / MÚSICA EN ACCIÓN
+       ==================================================== -->
+  <section
+    aria-label="Elinad en vivo"
+    class="relative overflow-hidden py-0"
+  >
+    <div class="relative h-[420px] md:h-[540px]">
+      <img
+        src={imgEnVivo.src}
+        alt="Elinad tocando en vivo con micrófono"
+        class="w-full h-full object-cover object-center"
+        loading="lazy"
+        decoding="async"
+      />
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+
+      <!-- Contenido sobre la imagen -->
+      <div class="absolute inset-0 flex items-center px-8 sm:px-16 lg:px-24">
+        <div class="max-w-lg">
+          <span class="text-theme-accent font-semibold text-sm uppercase tracking-widest">
+            Más que clases
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mt-2 leading-tight drop-shadow-lg">
+            La música es un estilo de vida
+          </h2>
+          <p class="mt-4 text-white/80 leading-relaxed text-base">
+            Elinad no solo enseña guitarra — es músico activo. Esa energía y experiencia
+            de escenario se traslada directo a cada clase.
+          </p>
+          <a
+            href="#cursos"
+            class="mt-7 inline-flex items-center gap-2 btn-primary"
+          >
+            Ver cursos
+          </a>
+        </div>
       </div>
     </div>
   </section>
