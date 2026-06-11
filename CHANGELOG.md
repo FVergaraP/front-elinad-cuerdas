@@ -6,6 +6,25 @@ Versionado según [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
+## [0.5.0] — 2026-06-11
+
+### Added
+
+- Botón **Ko-fi** en la sección de contacto (CTA secundario bajo el botón de WhatsApp) con ícono oficial y color de marca `#FF5E5B`
+- Ícono de Ko-fi en el **navbar desktop**, **menú mobile** y **footer**, al lado de TikTok — hover en rojo Ko-fi
+- Links de Ko-fi marcados como `PENDIENTE` a la espera del usuario del cliente
+
+### Changed
+
+- Badge del hero: `Clases de Bajo y Ukelele · Santiago, Chile` → `Profesor de Música · Bajista Profesional · Santiago, Chile`
+- Título principal: `Aprende bajo y ukelele con pasión` → `Aprende bajo, ukelele y más con Elinad Bass`
+- Descripción del hero actualizada: énfasis en 10 años de experiencia y oferta ampliada (guitarra, teoría musical, composición)
+- Subtítulo de la sección de cursos actualizado para reflejar modalidad principalmente online
+- Cursos redefinidos: se eliminaron `Bajo desde Cero`, `Bajo Intermedio` y `Clases Individuales`; se reemplazaron por `Taller de Ukelele` (presencial grupal, San Miguel), `Clases de Ukelele Personalizadas`, `Clases de Música Personalizadas` y `Composición y Songwriting`
+- Botón **Inscribirse** eliminado de las cards de cursos — queda solo el botón **Más información** (WhatsApp), ancho completo
+
+---
+
 ## [0.4.0] — 2026-06-04
 
 ### Added
@@ -70,4 +89,8 @@ Versionado según [Semantic Versioning](https://semver.org/lang/es/).
 - Favicon SVG
 - Corrección de especificidad CSS: se eliminó el bloque `:root` que impedía el cambio de tema
 
+[0.5.0]: https://github.com/fjvergarap/front-elinad-cuerdas/compare/v0.4.0...v0.5.0
+[0.4.0]: https://github.com/fjvergarap/front-elinad-cuerdas/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/fjvergarap/front-elinad-cuerdas/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/fjvergarap/front-elinad-cuerdas/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/fjvergarap/front-elinad-cuerdas/releases/tag/v0.1.0
