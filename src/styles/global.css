@@ -81,7 +81,7 @@
     font-weight: 600;
     font-size: 0.875rem;
     background-color: rgb(var(--theme-accent));
-    color: rgb(var(--theme-bg));
+    color: rgb(var(--theme-btn-text, var(--theme-bg)));
     transition: all 0.2s;
     &:hover { background-color: rgb(var(--theme-accent2)); }
     &:active { scale: 0.95; }
@@ -101,7 +101,7 @@
     transition: all 0.2s;
     &:hover {
       background-color: rgb(var(--theme-accent));
-      color: rgb(var(--theme-bg));
+      color: rgb(var(--theme-btn-text, var(--theme-bg)));
     }
     &:active { scale: 0.95; }
   }

@@ -16,5 +16,5 @@ export const THEMES: Theme[] = [
   { id: 'pro',   label: 'Profesional',  emoji: '💼', description: 'Azul & dorado' },
 ];
 
-export const DEFAULT_THEME: ThemeId = 'warm';
+export const DEFAULT_THEME: ThemeId = 'pro';
 export const THEME_STORAGE_KEY = 'elinad-theme';
