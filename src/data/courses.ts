@@ -36,6 +36,27 @@ export function buildWhatsappUrl(message: string): string {
 
 export const courses: Course[] = [
   {
+    id: 'clases-bajo-electrico',
+    slug: 'bajo-electrico',
+    title: 'Clases de Bajo Eléctrico',
+    shortDescription:
+      'Desde nivel inicial hasta avanzado. Técnica, repertorio, improvisación, lectura musical y desarrollo integral del instrumento. Clases personalizadas y adaptadas a tus objetivos.',
+    longDescription:
+      'Desde nivel inicial hasta avanzado. Técnica, repertorio, improvisación, lectura musical y desarrollo integral del instrumento. Clases personalizadas y adaptadas a tus objetivos.',
+    level: 'Todos los niveles',
+    modality: 'Híbrido',
+    duration: '60 min/clase',
+    sessions: 'A elección del alumno',
+    price: 20000,
+    currency: 'CLP',
+    imageAlt: 'Elinad enseñando bajo eléctrico',
+    featured: true,
+    tags: ['bajo eléctrico', 'individual', 'personalizado'],
+    whatsappMessage:
+      'Hola Elinad 👋 Me interesan las *Clases de Bajo Eléctrico*. ¿Cuál es tu disponibilidad?',
+    paymentUrl: 'https://mpago.la/bajo-electrico-placeholder',
+  },
+  {
     id: 'taller-ukelele',
     slug: 'taller-ukelele',
     title: 'Taller de Ukelele',

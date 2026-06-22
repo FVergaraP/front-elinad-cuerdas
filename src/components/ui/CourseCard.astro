@@ -30,7 +30,7 @@ const levelColors: Record<string, string> = {
 };
 ---
 
-<article class="card flex flex-col group" aria-label={`Curso: ${course.title}`}>
+<article class="card flex flex-col group h-full" aria-label={`Curso: ${course.title}`}>
   <!-- Badge de nivel + modalidad -->
   <div class="flex items-center gap-2 p-4 pb-0 flex-wrap">
     <span class={`text-xs font-semibold px-2.5 py-1 rounded-full ${levelColors[course.level] ?? ''}`}>

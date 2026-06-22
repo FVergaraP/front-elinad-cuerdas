@@ -34,5 +34,5 @@ export const FONTS: Font[] = [
   },
 ];
 
-export const DEFAULT_FONT: FontId = 'inter';
+export const DEFAULT_FONT: FontId = 'montserrat';
 export const FONT_STORAGE_KEY = 'elinad-font';
