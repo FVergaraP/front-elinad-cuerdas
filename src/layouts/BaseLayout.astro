@@ -12,8 +12,8 @@ interface Props {
 }
 
 const {
-  title = 'Elinad Cuerdas — Clases y Talleres de Bajo y Ukelele',
-  description = 'Aprende bajo y ukelele con Elinad: cursos personalizados, talleres grupales y clases para todos los niveles en Santiago de Chile.',
+  title = 'Elinad Bass — Clases y Talleres de Bajo, Ukelele y Música',
+  description = 'Aprende bajo eléctrico, ukelele y música con Elinad Bass: clases personalizadas, talleres grupales y formación musical para todos los niveles en Santiago de Chile.',
   image = '/og-image.jpg',
 } = Astro.props;
 
@@ -40,7 +40,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.site)} />
     <meta property="og:locale" content="es_CL" />
-    <meta property="og:site_name" content="Elinad Cuerdas" />
+    <meta property="og:site_name" content="Elinad Bass" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -55,9 +55,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         {
           "@type": "Person",
           "@id": `${Astro.site}#person`,
-          "name": "Elinad",
-          "jobTitle": "Profesora de Bajo y Ukelele",
-          "description": "Profesora de bajo y ukelele con más de 10 años de experiencia en Santiago de Chile. Clases personalizadas, talleres grupales y modalidad online.",
+          "name": "Elinad Bass",
+          "jobTitle": "Profesor de Música y Bajista Profesional",
+          "description": "Profesor de Música y bajista profesional con más de 10 años de experiencia en Santiago de Chile. Clases de bajo eléctrico, ukelele, guitarra y formación musical.",
           "url": String(Astro.site),
           "sameAs": [
             "https://www.instagram.com/elinadbass/",
@@ -67,8 +67,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         {
           "@type": "LocalBusiness",
           "@id": `${Astro.site}#business`,
-          "name": "Elinad Cuerdas",
-          "description": "Clases y talleres de bajo y ukelele en Santiago de Chile. Presencial, online o híbrido para todos los niveles.",
+          "name": "Elinad Bass",
+          "description": "Clases y talleres de bajo eléctrico, ukelele y música en Santiago de Chile. Online y presencial para todos los niveles.",
           "url": String(Astro.site),
           "telephone": "+56965017566",
           "address": {
@@ -135,13 +135,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     >
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         <!-- Logo / Nombre -->
-        <a href="/" class="flex items-center gap-2.5 group" aria-label="Inicio — Elinad Cuerdas">
+        <a href="/" class="flex items-center gap-2.5 group" aria-label="Inicio — Elinad Bass">
           <span
             class="text-2xl leading-none select-none group-hover:scale-110 transition-transform"
             aria-hidden="true"
           >🎸</span>
           <span class="font-display font-bold text-lg text-theme-text group-hover:text-theme-accent transition-colors">
-            Elinad Cuerdas
+            Elinad Bass
           </span>
         </a>
 
@@ -195,7 +195,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
           <!-- CTA WhatsApp -->
           <a
-            href={`https://wa.me/56965017566?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de bajo y ukelele.')}`}
+            href="https://wa.me/message/73YGTSCY67ZWP1"
             target="_blank"
             rel="noopener noreferrer"
             class="btn-primary hidden sm:inline-flex text-xs px-4 py-2"
@@ -239,7 +239,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
           <a href="#testimonios" class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Testimonios</a>
           <a href="#contacto"    class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Contacto</a>
           <a
-            href={`https://wa.me/56965017566?text=${encodeURIComponent('Hola Elinad 👋 Quisiera saber más sobre tus clases de bajo y ukelele.')}`}
+            href="https://wa.me/message/73YGTSCY67ZWP1"
             target="_blank" rel="noopener noreferrer"
             class="btn-primary mt-2 justify-center text-xs"
           >
@@ -292,16 +292,16 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
           <div class="text-center md:text-left">
-            <span class="font-display font-bold text-theme-text">Elinad Cuerdas</span>
+            <span class="font-display font-bold text-theme-text">Elinad Bass</span>
             <p class="text-xs text-theme-muted mt-1">
-              Clases y talleres de bajo y ukelele · Santiago, Chile
+              Clases y talleres de bajo, ukelele y música · Santiago, Chile
             </p>
           </div>
           <div class="flex items-center gap-5 text-xs text-theme-muted">
             <a href="#cursos"   class="hover:text-theme-accent transition-colors">Cursos</a>
             <a href="#contacto" class="hover:text-theme-accent transition-colors">Contacto</a>
             <a
-              href="https://wa.me/56965017566"
+              href="https://wa.me/message/73YGTSCY67ZWP1"
               target="_blank" rel="noopener noreferrer"
               class="hover:text-theme-accent transition-colors"
             >WhatsApp</a>
@@ -340,7 +340,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
             </a>
           </div>
           <p class="text-xs text-theme-muted text-center">
-            © {new Date().getFullYear()} Elinad Cuerdas. Todos los derechos reservados.
+            © {new Date().getFullYear()} Elinad Bass. Todos los derechos reservados.
           </p>
         </div>
       </div>
