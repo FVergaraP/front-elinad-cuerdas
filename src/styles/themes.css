@@ -71,6 +71,193 @@
   --theme-btn-text: 30 41 59;      /* #1E293B — texto oscuro sobre botones dorados */
 }
 
+/* =========================================================
+   VARIANTES CÁLIDA (Madera y dorado) — V1 a V8
+   ========================================================= */
+
+/* --- CÁLIDA V1: Espresso Dorado (fondo muy oscuro, oro vibrante) --- */
+[data-theme="calida-v1"] {
+  --theme-bg:      12 8 4;        /* #0c0804 */
+  --theme-surface: 24 16 8;       /* #181008 */
+  --theme-border:  65 45 22;      /* #412d16 */
+  --theme-text:    248 242 232;   /* #f8f2e8 */
+  --theme-muted:   172 152 118;   /* #ac9876 */
+  --theme-accent:  218 172 52;    /* #daac34 */
+  --theme-accent2: 245 205 90;    /* #f5cd5a */
+}
+
+/* --- CÁLIDA V2: Caoba (marrón cálido medio, oro clásico) --- */
+[data-theme="calida-v2"] {
+  --theme-bg:      45 32 18;      /* #2d2012 */
+  --theme-surface: 65 48 28;      /* #41301c */
+  --theme-border:  120 92 55;     /* #785c37 */
+  --theme-text:    255 252 242;   /* #fffcf2 */
+  --theme-muted:   215 190 155;   /* #d7be9b */
+  --theme-accent:  205 162 55;    /* #cda237 */
+  --theme-accent2: 235 198 88;    /* #ebc658 */
+}
+
+/* --- CÁLIDA V3: Ámbar (fondo oscuro ámbar, oro anaranjado) --- */
+[data-theme="calida-v3"] {
+  --theme-bg:      22 14 2;       /* #160e02 */
+  --theme-surface: 40 28 6;       /* #281c06 */
+  --theme-border:  88 62 18;      /* #583e12 */
+  --theme-text:    255 252 235;   /* #fffceb */
+  --theme-muted:   192 168 112;   /* #c0a870 */
+  --theme-accent:  228 148 24;    /* #e49418 */
+  --theme-accent2: 255 185 48;    /* #ffb930 */
+}
+
+/* --- CÁLIDA V4: Cedro (marrón rojizo oscuro, cobre cálido) --- */
+[data-theme="calida-v4"] {
+  --theme-bg:      24 10 8;       /* #180a08 */
+  --theme-surface: 42 18 15;      /* #2a120f */
+  --theme-border:  88 38 32;      /* #582620 */
+  --theme-text:    252 240 236;   /* #fcf0ec */
+  --theme-muted:   188 148 138;   /* #bc948a */
+  --theme-accent:  188 88 44;     /* #bc582c */
+  --theme-accent2: 218 132 72;    /* #da8448 */
+}
+
+/* --- CÁLIDA V5: Pino (marrón medio oscuro, oro cálido) --- */
+[data-theme="calida-v5"] {
+  --theme-bg:      35 26 14;      /* #231a0e */
+  --theme-surface: 55 42 22;      /* #372a16 */
+  --theme-border:  110 85 48;     /* #6e5530 */
+  --theme-text:    255 252 242;   /* #fffcf2 */
+  --theme-muted:   208 182 148;   /* #d0b694 */
+  --theme-accent:  210 162 58;    /* #d2a23a */
+  --theme-accent2: 238 198 88;    /* #eec658 */
+}
+
+/* --- CÁLIDA V6: Nogal (marrón frío muy oscuro, oro antiguo) --- */
+[data-theme="calida-v6"] {
+  --theme-bg:      16 12 8;       /* #100c08 */
+  --theme-surface: 30 22 16;      /* #1e1610 */
+  --theme-border:  62 48 32;      /* #3e3020 */
+  --theme-text:    238 232 222;   /* #eee8de */
+  --theme-muted:   155 142 118;   /* #9b8e76 */
+  --theme-accent:  148 115 58;    /* #94733a */
+  --theme-accent2: 185 148 85;    /* #b99455 */
+}
+
+/* --- CÁLIDA V7: Miel (fondo miel cálido, oro brillante) --- */
+[data-theme="calida-v7"] {
+  --theme-bg:      38 28 12;      /* #261c0c */
+  --theme-surface: 58 44 22;      /* #3a2c16 */
+  --theme-border:  115 88 45;     /* #73582d */
+  --theme-text:    255 252 238;   /* #fffcee */
+  --theme-muted:   210 185 148;   /* #d2b994 */
+  --theme-accent:  212 158 38;    /* #d49e26 */
+  --theme-accent2: 240 195 75;    /* #f0c34b */
+}
+
+/* --- CÁLIDA V8: Ébano (casi negro, oro sofisticado apagado) --- */
+[data-theme="calida-v8"] {
+  --theme-bg:      10 8 6;        /* #0a0806 */
+  --theme-surface: 20 15 10;      /* #140f0a */
+  --theme-border:  50 38 25;      /* #322619 */
+  --theme-text:    232 228 218;   /* #e8e4da */
+  --theme-muted:   145 132 110;   /* #91846e */
+  --theme-accent:  168 135 68;    /* #a88744 */
+  --theme-accent2: 202 165 98;    /* #caa562 */
+}
+
+/* =========================================================
+   VARIANTES PROFESIONAL (Azul y dorado) — V1 a V8
+   ========================================================= */
+
+/* --- PROFESIONAL V1: Marina Clásica (blanco, navy profundo, oro cálido) --- */
+[data-theme="pro-v1"] {
+  --theme-bg:       255 255 255;  /* #ffffff */
+  --theme-surface:  245 248 252;  /* #f5f8fc */
+  --theme-border:   210 220 235;  /* #d2dce8 */
+  --theme-text:     15 25 50;     /* #0f1932 */
+  --theme-muted:    80 100 135;   /* #506487 */
+  --theme-accent:   212 165 88;   /* #d4a558 */
+  --theme-accent2:  238 195 118;  /* #eec376 */
+  --theme-btn-text: 15 25 50;     /* texto oscuro sobre botones dorados */
+}
+
+/* --- PROFESIONAL V2: Noche de Mar (navy muy oscuro, oro dorado) --- */
+[data-theme="pro-v2"] {
+  --theme-bg:      8 15 32;       /* #080f20 */
+  --theme-surface: 14 26 52;      /* #0e1a34 */
+  --theme-border:  30 55 98;      /* #1e3762 */
+  --theme-text:    218 228 248;   /* #dae4f8 */
+  --theme-muted:   115 138 178;   /* #738ab2 */
+  --theme-accent:  215 168 85;    /* #d7a855 */
+  --theme-accent2: 245 202 122;   /* #f5ca7a */
+}
+
+/* --- PROFESIONAL V3: Acero (azul acero oscuro, acento dorado) --- */
+[data-theme="pro-v3"] {
+  --theme-bg:      18 24 36;      /* #121824 */
+  --theme-surface: 28 36 54;      /* #1c2436 */
+  --theme-border:  55 70 100;     /* #374664 */
+  --theme-text:    222 228 242;   /* #dee4f2 */
+  --theme-muted:   120 135 168;   /* #7887a8 */
+  --theme-accent:  202 158 78;    /* #ca9e4e */
+  --theme-accent2: 232 192 110;   /* #e8c06e */
+}
+
+/* --- PROFESIONAL V4: Zafiro (azul zafiro profundo, oro brillante) --- */
+[data-theme="pro-v4"] {
+  --theme-bg:      10 18 45;      /* #0a122d */
+  --theme-surface: 18 30 70;      /* #121e46 */
+  --theme-border:  40 65 120;     /* #284178 */
+  --theme-text:    220 228 252;   /* #dce4fc */
+  --theme-muted:   112 132 188;   /* #7084bc */
+  --theme-accent:  225 178 95;    /* #e1b25f */
+  --theme-accent2: 248 210 140;   /* #f8d28c */
+}
+
+/* --- PROFESIONAL V5: Porcelana (azul muy claro, oro profundo) --- */
+[data-theme="pro-v5"] {
+  --theme-bg:       248 252 255;  /* #f8fcff */
+  --theme-surface:  235 245 255;  /* #ebf5ff */
+  --theme-border:   195 215 240;  /* #c3d7f0 */
+  --theme-text:     22 42 72;     /* #162a48 */
+  --theme-muted:    92 118 158;   /* #5c769e */
+  --theme-accent:   188 142 62;   /* #bc8e3e */
+  --theme-accent2:  218 175 95;   /* #daaf5f */
+  --theme-btn-text: 22 42 72;     /* texto oscuro sobre botones dorados */
+}
+
+/* --- PROFESIONAL V6: Medianoche (azul medianoche, oro cálido) --- */
+[data-theme="pro-v6"] {
+  --theme-bg:      4 8 20;        /* #040814 */
+  --theme-surface: 8 16 38;       /* #081026 */
+  --theme-border:  18 38 75;      /* #12264b */
+  --theme-text:    205 218 245;   /* #cddaf5 */
+  --theme-muted:   95 118 162;    /* #5f76a2 */
+  --theme-accent:  218 165 70;    /* #daa546 */
+  --theme-accent2: 248 200 110;   /* #f8c86e */
+}
+
+/* --- PROFESIONAL V7: Atlántico (azul medio oscuro, oro luminoso) --- */
+[data-theme="pro-v7"] {
+  --theme-bg:      28 40 72;      /* #1c2848 */
+  --theme-surface: 38 54 95;      /* #26365f */
+  --theme-border:  65 90 145;     /* #415a91 */
+  --theme-text:    225 232 250;   /* #e1e8fa */
+  --theme-muted:   148 165 210;   /* #94a5d2 */
+  --theme-accent:  230 185 90;    /* #e6b95a */
+  --theme-accent2: 255 215 125;   /* #ffd77d */
+}
+
+/* --- PROFESIONAL V8: Slate Dorado (gris-azul claro, oro antiguo) --- */
+[data-theme="pro-v8"] {
+  --theme-bg:       248 250 252;  /* #f8fafc */
+  --theme-surface:  240 244 248;  /* #f0f4f8 */
+  --theme-border:   192 210 228;  /* #c0d2e4 */
+  --theme-text:     30 45 65;     /* #1e2d41 */
+  --theme-muted:    90 112 140;   /* #5a708c */
+  --theme-accent:   180 140 72;   /* #b48c48 */
+  --theme-accent2:  212 172 105;  /* #d4ac69 */
+  --theme-btn-text: 30 45 65;     /* texto oscuro sobre botones dorados */
+}
+
 /* Transición suave al cambiar de tema */
 *, *::before, *::after {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
