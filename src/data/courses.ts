@@ -45,7 +45,7 @@ export const courses: Course[] = [
       'Desde nivel inicial hasta avanzado. Desarrolla técnica, groove, lectura musical, escalas, arpegios, improvisación, slap, walking bass y comprensión armónica. Cada clase se adapta a tus objetivos, gustos musicales y nivel de experiencia.\n\nLas clases se realizan preferentemente en modalidad online. La modalidad presencial está sujeta a disponibilidad de horarios y contempla un cargo adicional por traslado y reserva exclusiva del horario.',
     level: 'Todos los niveles',
     modality: 'Online',
-    duration: '60 min/clase',
+    duration: '45 min/clase',
     sessions: 'A elección del estudiante',
     price: 75000,
     currency: 'CLP',
