@@ -40,9 +40,9 @@ export const courses: Course[] = [
     slug: 'bajo-electrico',
     title: 'Clases de Bajo Eléctrico',
     shortDescription:
-      'Desde nivel inicial hasta avanzado. Desarrolla técnica, groove, lectura musical, escalas, arpegios, improvisación, slap, walking bass y comprensión armónica. Cada clase se adapta a tus objetivos, gustos musicales y nivel de experiencia.\n\nLas clases se realizan preferentemente en modalidad online. La modalidad presencial está sujeta a disponibilidad de horarios y contempla un cargo adicional por traslado y reserva exclusiva del horario.',
+      'Para todos los niveles. Aprende técnica, groove, lectura musical, improvisación, slap, walking bass y comprensión musical con un plan adaptado a tus objetivos.\nModalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
     longDescription:
-      'Desde nivel inicial hasta avanzado. Desarrolla técnica, groove, lectura musical, escalas, arpegios, improvisación, slap, walking bass y comprensión armónica. Cada clase se adapta a tus objetivos, gustos musicales y nivel de experiencia.\n\nLas clases se realizan preferentemente en modalidad online. La modalidad presencial está sujeta a disponibilidad de horarios y contempla un cargo adicional por traslado y reserva exclusiva del horario.',
+      'Para todos los niveles. Aprende técnica, groove, lectura musical, improvisación, slap, walking bass y comprensión musical con un plan adaptado a tus objetivos.\nModalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
     level: 'Todos los niveles',
     modality: 'Online',
     duration: '45 min/clase',
@@ -61,9 +61,9 @@ export const courses: Course[] = [
     slug: 'taller-ukelele',
     title: 'Taller de Ukelele',
     shortDescription:
-      'Aprende a tocar ukelele en un ambiente cercano y entretenido. Un taller grupal para jóvenes y adultos, desde cero o con experiencia básica, donde desarrollarás acordes, ritmo y repertorio a través de canciones y actividades prácticas.\n\nDirección: Casona El Llano, San Miguel. A pasos del Metro El Llano.\n\nHorarios:\n• Miércoles 18:00 a 19:00 hrs.\n• Miércoles 20:15 a 21:15 hrs.',
+      'Taller grupal para jóvenes y adultos, desde cero o con conocimientos básicos. Aprende acordes, ritmo y repertorio a través de canciones en un ambiente cercano y entretenido.\n\n📍 Casona El Llano, San Miguel.\n\nHorarios:\n\n• Miércoles 18:00 a 19:00 hrs.\n• Miércoles 20:15 a 21:15 hrs.',
     longDescription:
-      'Aprende a tocar ukelele en un ambiente cercano y entretenido. Un taller grupal para jóvenes y adultos, desde cero o con experiencia básica, donde desarrollarás acordes, ritmo y repertorio a través de canciones y actividades prácticas.\n\nDirección: Casona El Llano, San Miguel. A pasos del Metro El Llano.\n\nHorarios:\n• Miércoles 18:00 a 19:00 hrs.\n• Miércoles 20:15 a 21:15 hrs.',
+      'Taller grupal para jóvenes y adultos, desde cero o con conocimientos básicos. Aprende acordes, ritmo y repertorio a través de canciones en un ambiente cercano y entretenido.\n\n📍 Casona El Llano, San Miguel.\n\nHorarios:\n\n• Miércoles 18:00 a 19:00 hrs.\n• Miércoles 20:15 a 21:15 hrs.',
     level: 'Principiante',
     modality: 'Presencial',
     duration: '1 hora/clase',
@@ -82,9 +82,9 @@ export const courses: Course[] = [
     slug: 'ukelele-personalizadas',
     title: 'Clases de Ukelele Personalizadas',
     shortDescription:
-      'Aprende ukelele a tu ritmo con clases individuales adaptadas a tu nivel e intereses musicales. Ideal para principiantes y estudiantes que buscan un acompañamiento más personalizado.\n\nPreferentemente online. Modalidad presencial disponible según disponibilidad horaria, con recargo por traslado.',
+      'Clases personalizadas de ukelele para todos los niveles. Aprende acordes, ritmo, acompañamiento y repertorio con un plan adaptado a tus objetivos.\nModalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
     longDescription:
-      'Aprende ukelele a tu ritmo con clases individuales adaptadas a tu nivel e intereses musicales. Ideal para principiantes y estudiantes que buscan un acompañamiento más personalizado.\n\nPreferentemente online. Modalidad presencial disponible según disponibilidad horaria, con recargo por traslado.',
+      'Clases personalizadas de ukelele para todos los niveles. Aprende acordes, ritmo, acompañamiento y repertorio con un plan adaptado a tus objetivos.\nModalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
     level: 'Todos los niveles',
     modality: 'Online',
     duration: '45 min/clase',
@@ -103,9 +103,9 @@ export const courses: Course[] = [
     slug: 'musica-personalizadas',
     title: 'Clases de Música Personalizadas',
     shortDescription:
-      'Clases personalizadas orientadas a tus objetivos musicales. Puedes profundizar en áreas como guitarra, teoría musical, lectura, entrenamiento auditivo, composición, interpretación y otros contenidos, con un enfoque adaptado a tu nivel e intereses.\n\nPreferentemente online. Modalidad presencial disponible según disponibilidad horaria, con recargo por traslado.',
+      'Clases personalizadas de guitarra, teoría musical, lectura, entrenamiento auditivo, composición, interpretación y otros contenidos, con un plan adaptado a tus objetivos. Modalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
     longDescription:
-      'Clases personalizadas orientadas a tus objetivos musicales. Puedes profundizar en áreas como guitarra, teoría musical, lectura, entrenamiento auditivo, composición, interpretación y otros contenidos, con un enfoque adaptado a tu nivel e intereses.\n\nPreferentemente online. Modalidad presencial disponible según disponibilidad horaria, con recargo por traslado.',
+      'Clases personalizadas de guitarra, teoría musical, lectura, entrenamiento auditivo, composición, interpretación y otros contenidos, con un plan adaptado a tus objetivos. Modalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
     level: 'Todos los niveles',
     modality: 'Online',
     duration: '45 min/clase',

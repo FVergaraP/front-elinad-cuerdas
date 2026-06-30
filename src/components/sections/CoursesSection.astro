@@ -1,6 +1,7 @@
 ---
 import { courses, WHATSAPP_BUSINESS_URL } from '@/data/courses';
 import CourseCard from '@/components/ui/CourseCard.astro';
+import imgKofi from '../../assets/images/kofi.png';
 ---
 
 <section id="cursos" aria-labelledby="courses-heading" class="py-20 px-4 sm:px-6 lg:px-8">
@@ -14,9 +15,7 @@ import CourseCard from '@/components/ui/CourseCard.astro';
         Cursos & Talleres
       </h2>
       <p class="section-subtitle mx-auto mt-4">
-        Formación musical personalizada en bajo eléctrico, ukelele, guitarra, teoría musical y más.
-        Desarrolla tus habilidades musicales con clases adaptadas a tus objetivos, nivel y ritmo de aprendizaje.
-        Modalidad principalmente online, con opciones presenciales según disponibilidad.
+        Elige el curso que más te interese y avanza a tu propio ritmo con un enfoque práctico y personalizado.
       </p>
     </div>
 
@@ -37,17 +36,27 @@ import CourseCard from '@/components/ui/CourseCard.astro';
         <article class="card flex flex-col group h-full" aria-label="Apoya el proyecto musical de Elinad">
           <div class="flex flex-col flex-1 p-5 gap-3">
             <h3 class="text-xl font-display font-bold text-theme-text group-hover:text-theme-accent transition-colors">
-              Apoya mi trabajo musical❤️
+              Apoya mi trabajo musical ❤️
             </h3>
-            <p class="text-theme-muted text-sm leading-relaxed flex-1">
-              Si disfrutas mis contenidos, tutoriales, clases o proyectos musicales, puedes apoyarme
-              a través de Ko-fi. Tu aporte me ayuda a seguir creando material educativo, organizando
-              talleres y compartiendo música con la comunidad.
+            <p class="text-theme-muted text-sm leading-relaxed">
+              ¿Te ha gustado o servido mi contenido? Puedes apoyarme en Ko-fi. Cada aporte me ayuda
+              a seguir creando material educativo, nuevos proyectos musicales y recursos para la comunidad.
             </p>
+            <div class="flex-1 flex items-center justify-center">
+              <img
+                src={imgKofi.src}
+                alt="Elinad Bass en Ko-fi"
+                width="200"
+                height="200"
+                class="w-20 h-20 rounded-full object-cover object-top ring-2 ring-theme-accent/30"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
           <div class="border-t border-theme-border p-5">
             <a
-              href="https://ko-fi.com/PENDIENTE"
+              href="https://ko-fi.com/elinadbass"
               target="_blank"
               rel="noopener noreferrer"
               class="btn-primary w-full justify-center"

@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import CoursesSection from '@/components/sections/CoursesSection.astro';
 import { buildWhatsappUrl } from '@/data/courses';
 import imgHero from '../assets/images/hero-guitarra.jpeg';
-import imgRetrato from '../assets/images/retrato2.jpg';
+import imgRetrato from '../assets/images/retrato3.jpg';
 import imgEnVivo from '../assets/images/en-vivo.jpeg';
 import imgKofi from '../assets/images/kofi.png';
 
@@ -50,9 +50,7 @@ const heroWhatsapp = buildWhatsappUrl(
       </h1>
 
       <p class="mt-6 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow">
-        Más de 10 años enseñando música a personas de todas las edades. Clases personalizadas de bajo eléctrico,
-        ukelele, guitarra y formación musical, adaptadas a tu nivel, intereses y objetivos.
-        Modalidad online para estudiantes de cualquier ciudad, con opción presencial según disponibilidad.
+        Clases personalizadas de bajo eléctrico, ukelele, guitarra, teoría musical y más, adaptadas a tu nivel, objetivos y ritmo. Modalidad preferentemente online, con opción presencial según disponibilidad.
       </p>
 
       <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
@@ -176,22 +174,27 @@ const heroWhatsapp = buildWhatsappUrl(
         </h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
         {[
           {
-            name: 'María J.',
-            role: 'Alumna — Curso Iniciación',
-            quote: 'Llegué sin saber nada de bajo y en 2 meses ya tocaba mis canciones favoritas. La paciencia y claridad de Elinad hacen toda la diferencia.',
+            name: 'Lautaro',
+            role: 'Estudiante de bajo eléctrico, 11 años.',
+            quote: 'Lo que más me ha gustado es que Daniel hace las clases muy entretenidas y explica muy bien. Siempre me ayuda a mejorar y me motiva a seguir aprendiendo.',
           },
           {
-            name: 'Tomás R.',
-            role: 'Alumno — Bajo Intermedio',
-            quote: 'El nivel de detalle en cada clase es impresionante. Aprendí más teoría musical en este curso que en años de tocar solo.',
+            name: 'Daniela',
+            role: 'Madre de Nahuel, estudiante de guitarra.',
+            quote: 'Mi hijo de 8 años toma clases de guitarra con Daniel y estamos muy conformes. Tiene muy buena llegada con los niños, es paciente, responsable y cercano. Las clases se basan en canciones que a mi hijo le gustan, lo que lo motiva mucho más y le ha permitido aprender muy rápido. ¡Totalmente recomendado!',
           },
           {
-            name: 'Valentina M.',
-            role: 'Alumna — Taller Eléctrica',
-            quote: 'Siempre quise aprender rock y por fin lo hice. El taller es intenso pero muy entretenido. ¡Totalmente recomendado!',
+            name: 'Erika',
+            role: 'Estudiante del Taller de Ukelele.',
+            quote: 'Aprendí desde cero y gané mucha confianza. Recomiendo las clases a cualquier persona que quiera avanzar a su propio ritmo, con un profesor que realmente se preocupa por sus estudiantes. Además, el ambiente es excelente. ¡100% recomendado!',
+          },
+          {
+            name: 'Camila Muñoz',
+            role: 'Estudiante de técnica vocal y composición.',
+            quote: '¡El profe Daniel es muy seco! Me ayudó mucho con el canto y también con proyectos personales de composición. Siempre mostró mucha dedicación y adaptó las clases a mi ritmo de aprendizaje.',
           },
         ].map(({ name, role, quote }) => (
           <blockquote class="card p-6 flex flex-col gap-4">
@@ -241,16 +244,16 @@ const heroWhatsapp = buildWhatsappUrl(
           </h2>
           <div class="mt-4 text-white/80 leading-relaxed text-base space-y-3">
             <p>
-              Creo que aprender música no debería sentirse como seguir un camino único para todos.
-              Cada estudiante tiene intereses, objetivos y un ritmo diferente, por eso adapto cada clase
-              a sus necesidades y forma de aprender.
+              Al enseñar, me dedico a comprender los objetivos, intereses y formas de aprender de cada
+              estudiante para favorecer un avance constante y ayudarle a desarrollar sus propias habilidades.
             </p>
             <p>
-              Mi objetivo no es solo enseñar técnica, sino ayudarte a disfrutar el proceso, comprender
-              la música y desarrollar las herramientas para seguir creciendo como músico.
+              Creo que el aprendizaje debe ir acompañado del disfrute musical, así el proceso se vuelve
+              más significativo y duradero.
             </p>
             <p>
-              Cada estudiante tiene un camino diferente. Mi compromiso es ayudarte a encontrar el tuyo.
+              Mi objetivo es entregarte las herramientas para desarrollar tus habilidades musicales y
+              acompañarte en tu propio camino de aprendizaje.
             </p>
           </div>
           <a
@@ -297,29 +300,22 @@ const heroWhatsapp = buildWhatsappUrl(
       </a>
       <p class="text-xs text-theme-muted mt-4">Sin compromiso · Responderé a la brevedad</p>
 
-      <!-- Ko-fi -->
-      <div class="mt-12 pt-8 border-t border-theme-border/50">
-        <img
-          src={imgKofi.src}
-          alt="Elinad Bass"
-          width="200"
-          height="200"
-          class="w-24 h-24 rounded-full object-cover object-top mx-auto mb-4 ring-2 ring-theme-accent/30"
-          loading="lazy"
-          decoding="async"
-        />
-        <p class="text-sm text-theme-muted mb-4">¿Ya eres alumno o simplemente quieres apoyar el proyecto?</p>
+      <!-- Ko-fi — apoyo voluntario discreto -->
+      <div class="mt-8 mx-auto max-w-xs rounded-2xl bg-theme-surface/60 border border-theme-border/40 px-5 py-4 text-center">
+        <p class="text-xs text-theme-muted leading-relaxed mb-3">
+          ¿Disfrutas el contenido que comparto?<br/>
+          Puedes apoyar mi trabajo con un café en Ko-fi.
+        </p>
         <a
-          href="https://ko-fi.com/PENDIENTE"
+          href="https://ko-fi.com/elinadbass"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full font-semibold text-sm
-                 bg-[#FF5E5B] hover:bg-[#e54e4b] text-white
-                 shadow-md hover:shadow-lg hover:scale-105
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-medium text-xs
+                 bg-theme-border/50 hover:bg-theme-border text-theme-muted hover:text-theme-text
                  transition-all duration-200"
           aria-label="Apoyar a Elinad en Ko-fi"
         >
-          ☕ Invítame un café
+          ☕ Ko-fi
         </a>
       </div>
     </div>

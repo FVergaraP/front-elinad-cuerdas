@@ -49,5 +49,5 @@ export const THEME_GROUPS = [
   { key: 'profesional', label: 'Variantes Profesional' },
 ] as const;
 
-export const DEFAULT_THEME: ThemeId = 'pro';
+export const DEFAULT_THEME: ThemeId = 'pro-v2';
 export const THEME_STORAGE_KEY = 'elinad-theme';
