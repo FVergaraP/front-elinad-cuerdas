@@ -1,0 +1,70 @@
+---
+import WhatsappButton from '@/components/ui/WhatsappButton.astro';
+
+interface ScheduleRow {
+  day: string;
+  hours: string[];
+  available: boolean;
+}
+
+const schedule: ScheduleRow[] = [
+  { day: 'Lunes', hours: ['14:00 a 16:00 hrs'], available: true },
+  { day: 'Martes', hours: ['8:00 a 11:00 am', '15:00 a 19:00 hrs'], available: true },
+  { day: 'Miércoles', hours: ['8:00 a 11:00 am'], available: true },
+  { day: 'Jueves', hours: ['15:00 a 17:00 hrs'], available: true },
+  { day: 'Viernes', hours: ['8:00 a 13:00 hrs'], available: true },
+  { day: 'Sábado', hours: ['No disponible'], available: false },
+];
+---
+
+<section
+  id="horarios"
+  aria-labelledby="schedule-heading"
+  class="py-20 px-4 sm:px-6 lg:px-8 bg-theme-surface/40"
+>
+  <div class="max-w-2xl mx-auto text-center">
+    <span class="text-theme-accent font-semibold text-sm uppercase tracking-widest">
+      Disponibilidad
+    </span>
+    <h2 id="schedule-heading" class="section-title mt-2">
+      Horarios online para clases particulares
+    </h2>
+    <p class="section-subtitle mx-auto mt-4">
+      Para clases presenciales, consulta la disponibilidad según los horarios publicados.
+    </p>
+  </div>
+
+  <div class="max-w-xl mx-auto mt-12 card">
+    <dl>
+      {schedule.map(({ day, hours, available }, i) => (
+        <div
+          class:list={[
+            'flex items-center justify-between gap-6 px-6 py-4',
+            i !== schedule.length - 1 && 'border-b border-theme-border',
+          ]}
+        >
+          <dt class="font-semibold text-theme-text">{day}</dt>
+          <dd class="text-right">
+            {hours.map((h) => (
+              <span
+                class:list={[
+                  'block text-sm text-theme-muted',
+                  !available && 'italic opacity-60',
+                ]}
+              >
+                {h}
+              </span>
+            ))}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+
+  <div class="mt-10 text-center">
+    <WhatsappButton
+      message="Hola Elinad 👋 Quiero coordinar un horario para clases particulares."
+      size="lg"
+    />
+  </div>
+</section>
