@@ -1,9 +1,14 @@
 ---
-import { buildWhatsappUrl, WHATSAPP_BUSINESS_URL } from '@/data/courses';
+import { contenido } from '@/data/content';
+import { whatsappUrl } from '@/lib/whatsapp';
 
 interface Props {
-  /** Mensaje pre-rellenado. Si se omite, enlaza al WhatsApp Business genérico. */
+  /** Mensaje que aparecerá ya escrito en el chat de WhatsApp. */
   message?: string;
+  /** Número de destino. Por defecto, el del sitio. */
+  numero?: string;
+  /** Enlace fijo que reemplaza al de WhatsApp (ej: el perfil de Business). */
+  href?: string;
   label?: string;
   variant?: 'primary' | 'secondary';
   size?: 'md' | 'lg';
@@ -13,6 +18,8 @@ interface Props {
 
 const {
   message,
+  numero = contenido.contacto.whatsappNumero,
+  href,
   label = 'Escríbeme por WhatsApp',
   variant = 'primary',
   size = 'md',
@@ -20,12 +27,12 @@ const {
   'aria-label': ariaLabel,
 } = Astro.props;
 
-const href = message ? buildWhatsappUrl(message) : WHATSAPP_BUSINESS_URL;
+const destino = href ?? whatsappUrl(numero, message);
 const iconSize = size === 'lg' ? 20 : 16;
 ---
 
 <a
-  href={href}
+  href={destino}
   target="_blank"
   rel="noopener noreferrer"
   aria-label={ariaLabel}

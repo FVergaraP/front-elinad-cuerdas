@@ -1,124 +1,19 @@
 // =================================================================
-// CONTRATO DE DATOS — Fase 1: datos mockeados
-// Fase 2: reemplazar `courses` por llamada a API/DB.
-// La forma de los tipos NO debe cambiar entre fases.
+// CONTRATO DE DATOS DE CURSOS
+//
+// Fase 1 (actual): los cursos se leen de `courses.json`, editable por
+// el cliente desde Pages CMS.
+//
+// Fase 2 (futura): reemplazar el cuerpo de `getCursos()` por la
+// llamada a la API. La FORMA del tipo `Curso` no debe cambiar entre
+// fases — es la frontera que aísla la UI del origen de los datos.
 // =================================================================
 
-export type CourseLevel = 'Principiante' | 'Intermedio' | 'Avanzado' | 'Todos los niveles';
-export type CourseModality = 'Presencial' | 'Online' | 'Híbrido';
+import { cursos } from './content';
 
-export interface Course {
-  id: string;
-  slug: string;
-  title: string;
-  shortDescription: string;
-  longDescription: string;
-  level: CourseLevel;
-  modality: CourseModality;
-  duration: string;        // ej: "8 semanas", "1 hora/clase"
-  sessions: string;        // ej: "4 clases al mes"
-  price: number;
-  currency: 'CLP' | 'USD';
-  imageAlt: string;
-  featured: boolean;
-  tags: string[];
-  // CTAs
-  whatsappMessage: string; // mensaje pre-rellenado (referencia interna)
-  paymentUrl: string;      // link directo de Mercado Pago u otro proveedor
+export type { Curso, Nivel, Modalidad, Moneda } from './content';
+export { NIVELES, MODALIDADES, MONEDAS } from './content';
+
+export function getCursos() {
+  return cursos;
 }
-
-export const WHATSAPP_NUMBER = '56965017566';
-export const WHATSAPP_BUSINESS_URL = 'https://wa.me/message/73YGTSCY67ZWP1';
-
-export function buildWhatsappUrl(_message: string): string {
-  return WHATSAPP_BUSINESS_URL;
-}
-
-export const courses: Course[] = [
-  {
-    id: 'clases-bajo-electrico',
-    slug: 'bajo-electrico',
-    title: 'Clases de Bajo Eléctrico',
-    shortDescription:
-      'Para todos los niveles. Aprende técnica, groove, lectura musical, improvisación, slap, walking bass y comprensión musical con un plan adaptado a tus objetivos.\nModalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
-    longDescription:
-      'Para todos los niveles. Aprende técnica, groove, lectura musical, improvisación, slap, walking bass y comprensión musical con un plan adaptado a tus objetivos.\nModalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
-    level: 'Todos los niveles',
-    modality: 'Online',
-    duration: '45 min/clase',
-    sessions: 'A elección del estudiante',
-    price: 75000,
-    currency: 'CLP',
-    imageAlt: 'Elinad enseñando bajo eléctrico',
-    featured: true,
-    tags: ['bajo eléctrico', 'individual', 'personalizado'],
-    whatsappMessage:
-      'Hola Elinad 👋 Me interesan las *Clases de Bajo Eléctrico*. ¿Cuál es tu disponibilidad?',
-    paymentUrl: 'https://mpago.la/bajo-electrico-placeholder',
-  },
-  {
-    id: 'taller-ukelele',
-    slug: 'taller-ukelele',
-    title: 'Taller de Ukelele',
-    shortDescription:
-      'Taller grupal para jóvenes y adultos, desde cero o con conocimientos básicos. Aprende acordes, ritmo y repertorio a través de canciones en un ambiente cercano y entretenido.\n\n📍 Casona El Llano, San Miguel.\n\nHorarios:\n\n• Miércoles 18:00 a 19:00 hrs.\n• Miércoles 20:15 a 21:15 hrs.',
-    longDescription:
-      'Taller grupal para jóvenes y adultos, desde cero o con conocimientos básicos. Aprende acordes, ritmo y repertorio a través de canciones en un ambiente cercano y entretenido.\n\n📍 Casona El Llano, San Miguel.\n\nHorarios:\n\n• Miércoles 18:00 a 19:00 hrs.\n• Miércoles 20:15 a 21:15 hrs.',
-    level: 'Principiante',
-    modality: 'Presencial',
-    duration: '1 hora/clase',
-    sessions: '4 clases al mes',
-    price: 35000,
-    currency: 'CLP',
-    imageAlt: 'Grupo de personas tocando ukelele en taller musical',
-    featured: true,
-    tags: ['ukelele', 'grupal', 'presencial', 'San Miguel'],
-    whatsappMessage:
-      'Hola Elinad 👋 Quiero saber más sobre el *Taller de Ukelele*. ¿Cuándo comienza la próxima edición?',
-    paymentUrl: 'https://mpago.la/ukelele-placeholder',
-  },
-  {
-    id: 'clases-ukelele-personalizadas',
-    slug: 'ukelele-personalizadas',
-    title: 'Clases de Ukelele Personalizadas',
-    shortDescription:
-      'Clases personalizadas de ukelele para todos los niveles. Aprende acordes, ritmo, acompañamiento y repertorio con un plan adaptado a tus objetivos.\nModalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
-    longDescription:
-      'Clases personalizadas de ukelele para todos los niveles. Aprende acordes, ritmo, acompañamiento y repertorio con un plan adaptado a tus objetivos.\nModalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
-    level: 'Todos los niveles',
-    modality: 'Online',
-    duration: '45 min/clase',
-    sessions: 'A elección del estudiante',
-    price: 75000,
-    currency: 'CLP',
-    imageAlt: 'Clase individual de ukelele personalizada',
-    featured: false,
-    tags: ['ukelele', 'individual', 'personalizado'],
-    whatsappMessage:
-      'Hola Elinad 👋 Me interesan las *Clases de Ukelele Personalizadas*. ¿Cuál es tu disponibilidad?',
-    paymentUrl: 'https://mpago.la/ukelele-individual-placeholder',
-  },
-  {
-    id: 'clases-musica-personalizadas',
-    slug: 'musica-personalizadas',
-    title: 'Clases de Música Personalizadas',
-    shortDescription:
-      'Clases personalizadas de guitarra, teoría musical, lectura, entrenamiento auditivo, composición, interpretación y otros contenidos, con un plan adaptado a tus objetivos. Modalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
-    longDescription:
-      'Clases personalizadas de guitarra, teoría musical, lectura, entrenamiento auditivo, composición, interpretación y otros contenidos, con un plan adaptado a tus objetivos. Modalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.',
-    level: 'Todos los niveles',
-    modality: 'Online',
-    duration: '45 min/clase',
-    sessions: 'A elección del estudiante',
-    price: 75000,
-    currency: 'CLP',
-    imageAlt: 'Clase personalizada de guitarra y teoría musical',
-    featured: false,
-    tags: ['guitarra', 'teoría', 'personalizado', 'online'],
-    whatsappMessage:
-      'Hola Elinad 👋 Me interesan las *Clases de Música Personalizadas*. ¿Puedes contarme más sobre el contenido y horarios?',
-    paymentUrl: 'https://mpago.la/musica-personalizada-placeholder',
-  },
-];
-
-export const featuredCourses = courses.filter((c) => c.featured);

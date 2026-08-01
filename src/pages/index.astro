@@ -3,14 +3,11 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import CoursesSection from '@/components/sections/CoursesSection.astro';
 import ScheduleSection from '@/components/sections/ScheduleSection.astro';
 import WhatsappButton from '@/components/ui/WhatsappButton.astro';
-import { buildWhatsappUrl } from '@/data/courses';
-import imgHero from '../assets/images/hero-guitarra.jpeg';
-import imgRetrato from '../assets/images/retrato3.jpg';
-import imgEnVivo from '../assets/images/en-vivo.jpeg';
-import imgKofi from '../assets/images/kofi.png';
+import { contenido } from '@/data/content';
+import { withBase } from '@/lib/url';
 
-const heroWhatsapp =
-  'Hola Elinad 👋 Vi tu página y me gustaría saber más sobre las clases de bajo y ukelele.';
+const { portada, sobreMi, testimonios, formaDeEnsenar, contactoFinal, redes } = contenido;
+const kofi = redes.find((r) => r.icono === 'kofi');
 ---
 
 <BaseLayout>
@@ -25,13 +22,12 @@ const heroWhatsapp =
     <!-- Foto de fondo -->
     <div class="absolute inset-0 -z-10" aria-hidden="true">
       <img
-        src={imgHero.src}
+        src={withBase(portada.imagenFondo)}
         alt=""
-        width="2764"
-        height="4138"
         class="w-full h-full object-cover object-center"
         fetchpriority="high"
         decoding="async"
+        data-key="portada.imagen_fondo"
       />
       <!-- Overlay degradado para legibilidad del texto -->
       <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
@@ -42,21 +38,28 @@ const heroWhatsapp =
         class="inline-block text-xs font-semibold uppercase tracking-[0.2em]
                text-theme-accent border border-theme-accent/60 rounded-full
                px-4 py-1.5 mb-6 backdrop-blur-sm"
+        data-key="portada.pre_titulo"
       >
-        Bajista Profesional · Profesor de Música · Santiago, Chile
+        {portada.preTitulo}
       </span>
 
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white leading-tight drop-shadow-lg">
-        Aprende bajo eléctrico, ukelele y música a tu ritmo
+      <h1
+        class="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white leading-tight drop-shadow-lg"
+        data-key="portada.titulo"
+      >
+        {portada.titulo}
       </h1>
 
-      <p class="mt-6 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow">
-        Clases personalizadas de bajo eléctrico, ukelele, guitarra, teoría musical y más, adaptadas a tu nivel, objetivos y ritmo. Modalidad preferentemente online, con opción presencial según disponibilidad.
+      <p
+        class="mt-6 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow"
+        data-key="portada.descripcion"
+      >
+        {portada.descripcion}
       </p>
 
       <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#cursos" class="btn-primary text-base px-7 py-4">
-          Ver cursos y talleres
+        <a href="#cursos" class="btn-primary text-base px-7 py-4" data-key="portada.boton_ver_cursos">
+          {portada.botonVerCursos}
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                stroke-linejoin="round" aria-hidden="true">
@@ -64,23 +67,19 @@ const heroWhatsapp =
           </svg>
         </a>
         <WhatsappButton
-          message={heroWhatsapp}
-          label="Escribir por WhatsApp"
+          message={portada.mensajeWhatsapp}
+          label={portada.botonWhatsapp}
           variant="secondary"
           size="lg"
         />
       </div>
 
       <!-- Estadísticas rápidas -->
-      <div class="mt-16 grid grid-cols-3 gap-6 max-w-lg mx-auto">
-        {[
-          { value: '+50', label: 'Alumnos' },
-          { value: '4', label: 'Cursos' },
-          { value: '2', label: 'Modalidades' },
-        ].map(({ value, label }) => (
+      <div class="mt-16 grid grid-cols-3 gap-6 max-w-lg mx-auto" data-key="portada.estadisticas">
+        {portada.estadisticas.map(({ numero, etiqueta }) => (
           <div class="text-center backdrop-blur-sm bg-white/5 rounded-2xl py-3 px-2">
-            <div class="text-2xl font-display font-bold text-theme-accent">{value}</div>
-            <div class="text-xs text-white/70 mt-0.5">{label}</div>
+            <div class="text-2xl font-display font-bold text-theme-accent">{numero}</div>
+            <div class="text-xs text-white/70 mt-0.5">{etiqueta}</div>
           </div>
         ))}
       </div>
@@ -111,13 +110,12 @@ const heroWhatsapp =
         <div class="relative">
           <div class="aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl ring-4 ring-theme-accent/20">
             <img
-              src={imgRetrato.src}
-              alt="Elinad con su bajo"
-              width="2069"
-              height="2832"
+              src={withBase(sobreMi.imagen)}
+              alt={sobreMi.imagenDescripcion}
               class="w-full h-full object-cover object-top"
               loading="lazy"
               decoding="async"
+              data-key="sobre_mi.imagen"
             />
           </div>
           <!-- Detalle decorativo -->
@@ -127,34 +125,20 @@ const heroWhatsapp =
 
         <!-- Texto -->
         <div>
-          <span class="text-theme-accent font-semibold text-sm uppercase tracking-widest">
-            Quién soy
+          <span class="text-theme-accent font-semibold text-sm uppercase tracking-widest" data-key="sobre_mi.pre_titulo">
+            {sobreMi.preTitulo}
           </span>
-          <h2 id="about-heading" class="section-title mt-2">
-            Hola, soy Elinad Bass
+          <h2 id="about-heading" class="section-title mt-2" data-key="sobre_mi.titulo">
+            {sobreMi.titulo}
           </h2>
-          <div class="space-y-4 mt-5 text-theme-muted leading-relaxed">
-            <p>
-              Soy Profesor de Música titulado y bajista profesional con estudios en ESJAZZ.
-              Cuento con más de 10 años de experiencia enseñando a estudiantes de distintas edades y niveles.
-              Mi formación combina estudios universitarios de pedagogía en música y especialización en bajo eléctrico,
-              además de una activa trayectoria como intérprete y tallerista.
-            </p>
-            <p>
-              Mi enfoque une técnica, musicalidad y disfrute del aprendizaje. Ya sea que estés
-              comenzando desde cero o quieras profundizar tus conocimientos, cada clase se adapta a
-              tus objetivos, intereses y ritmo de avance. Creo que aprender música debe ser un
-              proceso motivador, práctico y conectado con la música que realmente te inspira.
-            </p>
+          <div class="space-y-4 mt-5 text-theme-muted leading-relaxed" data-key="sobre_mi.parrafos">
+            {sobreMi.parrafos.map((parrafo) => <p>{parrafo}</p>)}
           </div>
-          <a
-            href={buildWhatsappUrl('Hola Elinad 👋 Me gustaría conocer más sobre ti y tu método de enseñanza.')}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-primary mt-8 inline-flex"
-          >
-            Contáctame
-          </a>
+          <WhatsappButton
+            message={sobreMi.mensajeWhatsapp}
+            label={sobreMi.boton}
+            class="mt-8"
+          />
         </div>
       </div>
     </div>
@@ -170,45 +154,24 @@ const heroWhatsapp =
   >
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-14">
-        <span class="text-theme-accent font-semibold text-sm uppercase tracking-widest">
-          Lo que dicen
+        <span class="text-theme-accent font-semibold text-sm uppercase tracking-widest" data-key="testimonios.pre_titulo">
+          {testimonios.preTitulo}
         </span>
-        <h2 id="testimonials-heading" class="section-title mt-2">
-          Testimonios
+        <h2 id="testimonials-heading" class="section-title mt-2" data-key="testimonios.titulo">
+          {testimonios.titulo}
         </h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
-        {[
-          {
-            name: 'Lautaro',
-            role: 'Estudiante de bajo eléctrico, 11 años.',
-            quote: 'Lo que más me ha gustado es que Daniel hace las clases muy entretenidas y explica muy bien. Siempre me ayuda a mejorar y me motiva a seguir aprendiendo.',
-          },
-          {
-            name: 'Daniela',
-            role: 'Madre de Nahuel, estudiante de guitarra.',
-            quote: 'Mi hijo de 8 años toma clases de guitarra con Daniel y estamos muy conformes. Tiene muy buena llegada con los niños, es paciente, responsable y cercano. Las clases se basan en canciones que a mi hijo le gustan, lo que lo motiva mucho más y le ha permitido aprender muy rápido. ¡Totalmente recomendado!',
-          },
-          {
-            name: 'Erika',
-            role: 'Estudiante del Taller de Ukelele.',
-            quote: 'Aprendí desde cero y gané mucha confianza. Recomiendo las clases a cualquier persona que quiera avanzar a su propio ritmo, con un profesor que realmente se preocupa por sus estudiantes. Además, el ambiente es excelente. ¡100% recomendado!',
-          },
-          {
-            name: 'Camila Muñoz',
-            role: 'Estudiante de técnica vocal y composición.',
-            quote: '¡El profe Daniel es muy seco! Me ayudó mucho con el canto y también con proyectos personales de composición. Siempre mostró mucha dedicación y adaptó las clases a mi ritmo de aprendizaje.',
-          },
-        ].map(({ name, role, quote }) => (
+      <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6" data-key="testimonios.listado">
+        {testimonios.listado.map(({ nombre, rol, comentario }) => (
           <blockquote class="card p-6 flex flex-col gap-4">
             <p class="text-theme-muted text-sm leading-relaxed flex-1">
-              "{quote}"
+              "{comentario}"
             </p>
             <footer>
               <cite class="not-italic">
-                <span class="block font-semibold text-theme-text text-sm">{name}</span>
-                <span class="block text-xs text-theme-accent">{role}</span>
+                <span class="block font-semibold text-theme-text text-sm">{nombre}</span>
+                <span class="block text-xs text-theme-accent">{rol}</span>
               </cite>
             </footer>
           </blockquote>
@@ -218,7 +181,7 @@ const heroWhatsapp =
   </section>
 
   <!-- ====================================================
-       EN VIVO / MÚSICA EN ACCIÓN
+       EN VIVO / MI FORMA DE ENSEÑAR
        ==================================================== -->
   <section
     aria-label="Elinad en vivo"
@@ -226,13 +189,12 @@ const heroWhatsapp =
   >
     <div class="relative h-[420px] md:h-[540px]">
       <img
-        src={imgEnVivo.src}
-        alt="Elinad tocando en vivo con micrófono"
-        width="4237"
-        height="2830"
+        src={withBase(formaDeEnsenar.imagen)}
+        alt={formaDeEnsenar.imagenDescripcion}
         class="w-full h-full object-cover object-center"
         loading="lazy"
         decoding="async"
+        data-key="forma_de_ensenar.imagen"
       />
       <!-- Overlay -->
       <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
@@ -240,31 +202,24 @@ const heroWhatsapp =
       <!-- Contenido sobre la imagen -->
       <div class="absolute inset-0 flex items-center px-8 sm:px-16 lg:px-24">
         <div class="max-w-lg">
-          <span class="text-theme-accent font-semibold text-sm uppercase tracking-widest">
-            Más que clases
+          <span class="text-theme-accent font-semibold text-sm uppercase tracking-widest" data-key="forma_de_ensenar.pre_titulo">
+            {formaDeEnsenar.preTitulo}
           </span>
-          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white mt-2 leading-tight drop-shadow-lg">
-            Mi forma de enseñar
+          <h2
+            class="text-3xl sm:text-4xl font-display font-bold text-white mt-2 leading-tight drop-shadow-lg"
+            data-key="forma_de_ensenar.titulo"
+          >
+            {formaDeEnsenar.titulo}
           </h2>
-          <div class="mt-4 text-white/80 leading-relaxed text-base space-y-3">
-            <p>
-              Al enseñar, me dedico a comprender los objetivos, intereses y formas de aprender de cada
-              estudiante para favorecer un avance constante y ayudarle a desarrollar sus propias habilidades.
-            </p>
-            <p>
-              Creo que el aprendizaje debe ir acompañado del disfrute musical, así el proceso se vuelve
-              más significativo y duradero.
-            </p>
-            <p>
-              Mi objetivo es entregarte las herramientas para desarrollar tus habilidades musicales y
-              acompañarte en tu propio camino de aprendizaje.
-            </p>
+          <div class="mt-4 text-white/80 leading-relaxed text-base space-y-3" data-key="forma_de_ensenar.parrafos">
+            {formaDeEnsenar.parrafos.map((parrafo) => <p>{parrafo}</p>)}
           </div>
           <a
             href="#cursos"
             class="mt-7 inline-flex items-center gap-2 btn-primary"
+            data-key="forma_de_ensenar.boton"
           >
-            Ver cursos
+            {formaDeEnsenar.boton}
           </a>
         </div>
       </div>
@@ -280,39 +235,39 @@ const heroWhatsapp =
     class="py-20 px-4 sm:px-6 lg:px-8 bg-theme-surface/40"
   >
     <div class="max-w-2xl mx-auto text-center">
-      <span class="text-theme-accent font-semibold text-sm uppercase tracking-widest">
-        ¿Listo/a para empezar?
+      <span class="text-theme-accent font-semibold text-sm uppercase tracking-widest" data-key="contacto_final.pre_titulo">
+        {contactoFinal.preTitulo}
       </span>
-      <h2 id="contact-heading" class="section-title mt-2">
-        Hablemos
+      <h2 id="contact-heading" class="section-title mt-2" data-key="contacto_final.titulo">
+        {contactoFinal.titulo}
       </h2>
-      <p class="section-subtitle mx-auto mt-4">
-        Si tienes preguntas o quieres conocer la modalidad de las clases, escríbeme por WhatsApp.
-        Estaré encantado de orientarte y ayudarte a encontrar la opción que mejor se adapte a tus objetivos.
+      <p class="section-subtitle mx-auto mt-4" data-key="contacto_final.descripcion">
+        {contactoFinal.descripcion}
       </p>
       <WhatsappButton
-        message="Hola Elinad 👋 Tengo preguntas sobre las clases. ¿Me puedes orientar?"
+        message={contactoFinal.mensajeWhatsapp}
+        label={contactoFinal.botonWhatsapp}
         size="lg"
         class="mt-10"
       />
-      <p class="text-xs text-theme-muted mt-4">Sin compromiso · Responderé a la brevedad</p>
+      <p class="text-xs text-theme-muted mt-4" data-key="contacto_final.nota">{contactoFinal.nota}</p>
 
       <!-- Ko-fi — apoyo voluntario discreto -->
       <div class="mt-8 mx-auto max-w-xs rounded-2xl bg-theme-surface/60 border border-theme-border/40 px-5 py-4 text-center">
-        <p class="text-xs text-theme-muted leading-relaxed mb-3">
-          ¿Disfrutas el contenido que comparto?<br/>
-          Puedes apoyar mi trabajo con un café en Ko-fi.
+        <p class="text-xs text-theme-muted leading-relaxed mb-3 whitespace-pre-line" data-key="contacto_final.caja_kofi.texto">
+          {contactoFinal.cajaKofi.texto}
         </p>
         <a
-          href="https://ko-fi.com/elinadbass"
+          href={kofi?.url}
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-medium text-xs
                  bg-theme-border/50 hover:bg-theme-border text-theme-muted hover:text-theme-text
                  transition-all duration-200"
           aria-label="Apoyar a Elinad en Ko-fi"
+          data-key="contacto_final.caja_kofi.boton"
         >
-          ☕ Ko-fi
+          {contactoFinal.cajaKofi.boton}
         </a>
       </div>
     </div>

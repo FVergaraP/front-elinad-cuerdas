@@ -1,0 +1,440 @@
+# =================================================================
+# CONFIGURACIÓN DEL EDITOR VISUAL (Pages CMS — https://pagescms.org)
+#
+# Este archivo define los formularios que ve quien edita el sitio en
+# app.pagescms.org. Cada campo lleva su etiqueta y su explicación en
+# español, para que no haga falta entender de código.
+#
+# ⚠️ IMPORTANTE PARA QUIEN MANTIENE EL SITIO
+# Pages CMS reescribe el archivo JSON completo cada vez que se guarda.
+# Toda clave que exista en page_data.json / courses.json DEBE estar
+# declarada aquí abajo, o se perderá en el próximo guardado.
+# Los datos técnicos que el cliente no debe tocar viven en
+# src/data/seo.ts, fuera del alcance del editor.
+# =================================================================
+
+media:
+  input: public/images
+  output: /images
+  extensions: [jpg, jpeg, png, webp, svg]
+
+content:
+  # ---------------------------------------------------------------
+  # 1. CONTENIDO DE LA PÁGINA
+  # ---------------------------------------------------------------
+  - name: pagina
+    label: Contenido de la página
+    type: file
+    path: src/data/page_data.json
+    format: json
+    fields:
+      - name: negocio
+        label: Datos generales
+        type: object
+        description: Nombre y datos que aparecen en el encabezado y el pie de página.
+        fields:
+          - name: nombre
+            label: Nombre del sitio
+            type: string
+            description: Aparece arriba a la izquierda, en el pie de página y en Google.
+          - name: emoji_logo
+            label: Emoji del logo
+            type: string
+            description: El dibujito que va junto al nombre, arriba a la izquierda. Ejemplo:🎸
+          - name: ciudad
+            label: Ciudad
+            type: string
+            description: Se usa para que Google sepa dónde se ofrecen las clases.
+          - name: descripcion_pie_de_pagina
+            label: Frase del pie de página
+            type: string
+            description: La línea pequeña bajo el nombre, al final de todo.
+
+      - name: seo
+        label: Google y redes sociales
+        type: object
+        description: Textos que NO se ven en la página, pero sí en Google y al compartir el link.
+        fields:
+          - name: titulo_pestana
+            label: Título en la pestaña del navegador
+            type: string
+            description: También es el título azul que aparece en Google. Máximo 60 caracteres.
+          - name: descripcion_buscadores
+            label: Descripción para Google
+            type: text
+            description: El párrafo gris bajo el título en Google. Entre 120 y 160 caracteres.
+          - name: descripcion_negocio
+            label: Descripción corta del negocio
+            type: text
+            description: Resumen de qué se ofrece. Lo usa Google para fichas de negocio.
+          - name: profesion
+            label: Profesión
+            type: string
+            description: 'Ejemplo: Profesor de Música y Bajista Profesional.'
+          - name: imagen_al_compartir
+            label: Imagen al compartir el link
+            type: image
+            description: La foto que se ve cuando alguien pega el link en WhatsApp o Instagram.
+
+      - name: contacto
+        label: WhatsApp
+        type: object
+        fields:
+          - name: whatsapp_numero
+            label: Número de WhatsApp
+            type: string
+            description: 'Con código de país y sin espacios. Ejemplo: +56965017566. Se usa en todos los botones que abren el chat con un mensaje ya escrito.'
+          - name: whatsapp_link_perfil
+            label: Enlace del perfil de WhatsApp Business
+            type: string
+            description: Enlace corto de WhatsApp Business. Se usa SOLO en el botón del menú, y ahí no se puede prellenar el mensaje.
+          - name: boton_menu
+            label: Texto del botón del menú
+            type: string
+            description: El botón dorado de arriba a la derecha.
+
+      - name: redes
+        label: Redes sociales
+        type: object
+        list: true
+        description: Los iconos que aparecen en el encabezado, el menú del celular y el pie de página.
+        fields:
+          - name: nombre
+            label: Nombre
+            type: string
+          - name: url
+            label: Enlace
+            type: string
+            description: Dirección completa, empezando con https://
+          - name: icono
+            label: Icono
+            type: select
+            description: Elige cuál de los tres iconos disponibles se muestra.
+            options:
+              values: [instagram, tiktok, kofi]
+
+      - name: menu
+        label: Menú de navegación
+        type: object
+        list: true
+        description: Los enlaces de arriba. El "ancla" debe coincidir con una sección de la página.
+        fields:
+          - name: texto
+            label: Texto del enlace
+            type: string
+          - name: ancla
+            label: A qué sección lleva
+            type: select
+            description: No inventes valores nuevos; solo existen estas secciones.
+            options:
+              values: ['#cursos', '#horarios', '#sobre-mi', '#testimonios', '#contacto']
+
+      - name: portada
+        label: 1 · Portada (lo primero que se ve)
+        type: object
+        fields:
+          - name: pre_titulo
+            label: Texto del recuadro pequeño
+            type: string
+            description: La línea con borde redondeado, arriba del título grande.
+          - name: titulo
+            label: Título grande
+            type: text
+            description: El texto más grande de toda la página.
+          - name: descripcion
+            label: Párrafo bajo el título
+            type: text
+          - name: boton_ver_cursos
+            label: Texto del botón dorado
+            type: string
+          - name: boton_whatsapp
+            label: Texto del botón de WhatsApp
+            type: string
+          - name: mensaje_whatsapp
+            label: Mensaje que se envía por WhatsApp
+            type: text
+            description: Lo que aparecerá ya escrito en el chat cuando alguien toque ese botón.
+          - name: imagen_fondo
+            label: Foto de fondo
+            type: image
+            description: Se ve oscurecida detrás del título. Conviene una foto horizontal y nítida.
+          - name: estadisticas
+            label: Los tres números
+            type: object
+            list: true
+            description: Los tres recuadros con números bajo los botones.
+            fields:
+              - name: numero
+                label: Número
+                type: string
+                description: 'Puede llevar símbolos. Ejemplo: +50'
+              - name: etiqueta
+                label: Texto bajo el número
+                type: string
+
+      - name: cursos_seccion
+        label: 2 · Sección "Cursos & Talleres" (textos)
+        type: object
+        description: Solo los textos que rodean a los cursos. Los cursos en sí se editan en "Cursos y talleres".
+        fields:
+          - name: pre_titulo
+            label: Texto pequeño sobre el título
+            type: string
+          - name: titulo
+            label: Título de la sección
+            type: string
+          - name: bajada
+            label: Párrafo bajo el título
+            type: text
+          - name: tarjeta_kofi
+            label: Tarjeta de Ko-fi
+            type: object
+            description: La tarjeta extra que aparece junto a los cursos, para recibir aportes.
+            fields:
+              - name: titulo
+                label: Título de la tarjeta
+                type: string
+              - name: texto
+                label: Texto de la tarjeta
+                type: text
+              - name: imagen
+                label: Foto
+                type: image
+              - name: imagen_descripcion
+                label: Descripción de la foto
+                type: string
+                description: Para personas ciegas y para Google. Describe qué se ve en la foto.
+              - name: boton
+                label: Texto del botón
+                type: string
+          - name: texto_final
+            label: Frase bajo los cursos
+            type: text
+          - name: boton_final
+            label: Botón bajo los cursos
+            type: string
+
+      - name: horarios
+        label: 3 · Sección "Horarios"
+        type: object
+        fields:
+          - name: pre_titulo
+            label: Texto pequeño sobre el título
+            type: string
+          - name: titulo
+            label: Título de la sección
+            type: string
+          - name: bajada
+            label: Párrafo bajo el título
+            type: text
+          - name: dias
+            label: Horario de cada día
+            type: object
+            list: true
+            description: Las filas de la tabla. Puedes agregar, quitar o reordenar días.
+            fields:
+              - name: dia
+                label: Día
+                type: string
+              - name: horas
+                label: Horarios de ese día
+                type: string
+                list: true
+                description: Un horario por línea. Si el día no está disponible, escribe "No disponible".
+              - name: disponible
+                label: ¿Hay clases ese día?
+                type: boolean
+                description: Si lo desmarcas, el texto se muestra en gris y cursiva.
+          - name: boton_whatsapp
+            label: Texto del botón
+            type: string
+          - name: mensaje_whatsapp
+            label: Mensaje que se envía por WhatsApp
+            type: text
+
+      - name: sobre_mi
+        label: 4 · Sección "Sobre mí"
+        type: object
+        fields:
+          - name: pre_titulo
+            label: Texto pequeño sobre el título
+            type: string
+          - name: titulo
+            label: Título de la sección
+            type: string
+          - name: parrafos
+            label: Párrafos
+            type: text
+            list: true
+            description: Cada elemento de la lista es un párrafo aparte.
+          - name: boton
+            label: Texto del botón
+            type: string
+          - name: mensaje_whatsapp
+            label: Mensaje que se envía por WhatsApp
+            type: text
+          - name: imagen
+            label: Foto de perfil
+            type: image
+            description: Se muestra vertical, al lado del texto.
+          - name: imagen_descripcion
+            label: Descripción de la foto
+            type: string
+
+      - name: testimonios
+        label: 5 · Sección "Testimonios"
+        type: object
+        fields:
+          - name: pre_titulo
+            label: Texto pequeño sobre el título
+            type: string
+          - name: titulo
+            label: Título de la sección
+            type: string
+          - name: listado
+            label: Testimonios
+            type: object
+            list: true
+            description: Cada uno es una tarjeta. Puedes agregar, quitar o reordenar.
+            fields:
+              - name: nombre
+                label: Nombre de quien lo escribe
+                type: string
+              - name: rol
+                label: Quién es
+                type: string
+                description: 'Ejemplo: Estudiante de bajo eléctrico, 11 años.'
+              - name: comentario
+                label: Testimonio
+                type: text
+                description: No escribas las comillas; se agregan solas.
+
+      - name: forma_de_ensenar
+        label: 6 · Sección "Mi forma de enseñar"
+        type: object
+        description: La franja con la foto grande de fondo y texto encima.
+        fields:
+          - name: pre_titulo
+            label: Texto pequeño sobre el título
+            type: string
+          - name: titulo
+            label: Título de la sección
+            type: string
+          - name: parrafos
+            label: Párrafos
+            type: text
+            list: true
+          - name: boton
+            label: Texto del botón
+            type: string
+          - name: imagen
+            label: Foto de fondo
+            type: image
+            description: Se ve a lo ancho. Conviene una foto horizontal, con espacio libre a la izquierda para el texto.
+          - name: imagen_descripcion
+            label: Descripción de la foto
+            type: string
+
+      - name: contacto_final
+        label: 7 · Sección "Hablemos" (final)
+        type: object
+        fields:
+          - name: pre_titulo
+            label: Texto pequeño sobre el título
+            type: string
+          - name: titulo
+            label: Título de la sección
+            type: string
+          - name: descripcion
+            label: Párrafo bajo el título
+            type: text
+          - name: boton_whatsapp
+            label: Texto del botón grande
+            type: string
+          - name: mensaje_whatsapp
+            label: Mensaje que se envía por WhatsApp
+            type: text
+          - name: nota
+            label: Frase pequeña bajo el botón
+            type: string
+          - name: caja_kofi
+            label: Recuadro de Ko-fi
+            type: object
+            fields:
+              - name: texto
+                label: Texto del recuadro
+                type: text
+                description: Puedes usar Enter para partir la frase en dos líneas.
+              - name: boton
+                label: Texto del botón
+                type: string
+
+  # ---------------------------------------------------------------
+  # 2. CURSOS Y TALLERES
+  # ---------------------------------------------------------------
+  - name: cursos
+    label: Cursos y talleres
+    type: file
+    path: src/data/courses.json
+    format: json
+    list: true
+    fields:
+      - name: id
+        label: Identificador interno — NO MODIFICAR
+        type: string
+        description: Lo usa el sistema por dentro. Si creas un curso nuevo, escribe un nombre corto sin espacios ni tildes (ejemplo:taller-guitarra) y que no se repita.
+      - name: titulo
+        label: Nombre del curso
+        type: string
+      - name: descripcion
+        label: Descripción
+        type: text
+        description: Puedes usar Enter para separar líneas. Se respetan los saltos, las viñetas (•) y los emojis.
+      - name: nivel
+        label: Nivel
+        type: select
+        description: Define el color de la etiqueta. Debe ser uno de estos cuatro.
+        options:
+          values: [Principiante, Intermedio, Avanzado, Todos los niveles]
+      - name: modalidad
+        label: Modalidad
+        type: select
+        options:
+          values: [Presencial, Online, Híbrido]
+      - name: duracion
+        label: Duración de cada clase
+        type: string
+        description: 'Ejemplo: 45 min/clase'
+      - name: frecuencia
+        label: Cuántas clases
+        type: string
+        description: 'Ejemplo: 4 clases al mes'
+      - name: precio
+        label: Precio
+        type: number
+        description: Solo el número, SIN puntos ni signo peso. Para $35.000 escribe 35000.
+      - name: moneda
+        label: Moneda
+        type: select
+        options:
+          values: [CLP, USD]
+      - name: sufijo_precio
+        label: Texto junto al precio
+        type: string
+        description: 'La letra chica al lado del precio. Ejemplo: CLP / mes'
+      - name: destacado
+        label: ¿Mostrar la etiqueta "Destacado"?
+        type: boolean
+      - name: etiquetas
+        label: Etiquetas
+        type: string
+        list: true
+        description: Las palabras con # bajo la descripción. Escríbelas sin el #.
+      - name: mensaje_whatsapp
+        label: Mensaje que se envía por WhatsApp
+        type: text
+        description: Lo que aparecerá ya escrito en el chat al tocar "Más información". Poner el nombre del curso ayuda a saber por cuál consultan.
+
+settings:
+  content:
+    merge: true

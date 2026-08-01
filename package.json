@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/validar-json.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "validar": "node scripts/validar-json.mjs",
+    "optimizar-imagenes": "node scripts/optimizar-imagenes.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

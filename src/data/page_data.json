@@ -1,0 +1,137 @@
+{
+  "negocio": {
+    "nombre": "Elinad Bass",
+    "emoji_logo": "🎸",
+    "ciudad": "Santiago",
+    "descripcion_pie_de_pagina": "Clases y talleres de bajo, ukelele y música · Santiago, Chile"
+  },
+  "seo": {
+    "titulo_pestana": "Elinad Bass — Clases y Talleres de Bajo, Ukelele y Música",
+    "descripcion_buscadores": "Aprende bajo eléctrico, ukelele y música con Elinad Bass: clases personalizadas, talleres grupales y formación musical para todos los niveles en Santiago de Chile.",
+    "descripcion_negocio": "Clases y talleres de bajo eléctrico, ukelele y música en Santiago de Chile. Online y presencial para todos los niveles.",
+    "profesion": "Profesor de Música y Bajista Profesional",
+    "imagen_al_compartir": "/images/retrato3.jpg"
+  },
+  "contacto": {
+    "whatsapp_numero": "+56965017566",
+    "whatsapp_link_perfil": "https://wa.me/message/73YGTSCY67ZWP1",
+    "boton_menu": "Escríbeme"
+  },
+  "redes": [
+    { "nombre": "Instagram", "url": "https://www.instagram.com/elinadbass/", "icono": "instagram" },
+    { "nombre": "TikTok", "url": "https://www.tiktok.com/@elinad.bass", "icono": "tiktok" },
+    { "nombre": "Ko-fi", "url": "https://ko-fi.com/elinadbass", "icono": "kofi" }
+  ],
+  "menu": [
+    { "texto": "Cursos", "ancla": "#cursos" },
+    { "texto": "Horarios", "ancla": "#horarios" },
+    { "texto": "Sobre mí", "ancla": "#sobre-mi" },
+    { "texto": "Testimonios", "ancla": "#testimonios" },
+    { "texto": "Contacto", "ancla": "#contacto" }
+  ],
+  "portada": {
+    "pre_titulo": "Bajista Profesional · Profesor de Música · Santiago, Chile",
+    "titulo": "Aprende bajo eléctrico, ukelele y música a tu ritmo",
+    "descripcion": "Clases personalizadas de bajo eléctrico, ukelele, guitarra, teoría musical y más, adaptadas a tu nivel, objetivos y ritmo. Modalidad preferentemente online, con opción presencial según disponibilidad.",
+    "boton_ver_cursos": "Ver cursos y talleres",
+    "boton_whatsapp": "Escribir por WhatsApp",
+    "mensaje_whatsapp": "Hola Elinad 👋 Vi tu página y me gustaría saber más sobre las clases de bajo y ukelele.",
+    "imagen_fondo": "/images/hero-guitarra.jpeg",
+    "estadisticas": [
+      { "numero": "+50", "etiqueta": "Alumnos" },
+      { "numero": "4", "etiqueta": "Cursos" },
+      { "numero": "2", "etiqueta": "Modalidades" }
+    ]
+  },
+  "cursos_seccion": {
+    "pre_titulo": "Lo que ofrezco",
+    "titulo": "Cursos & Talleres",
+    "bajada": "Elige el curso que más te interese y avanza a tu propio ritmo con un enfoque práctico y personalizado.",
+    "tarjeta_kofi": {
+      "titulo": "Apoya mi trabajo musical ❤️",
+      "texto": "¿Te ha gustado o servido mi contenido? Puedes apoyarme en Ko-fi. Cada aporte me ayuda a seguir creando material educativo, nuevos proyectos musicales y recursos para la comunidad.",
+      "imagen": "/images/kofi.jpg",
+      "imagen_descripcion": "Elinad Bass en Ko-fi",
+      "boton": "☕ Invítame un café"
+    },
+    "texto_final": "¿No encontraste lo que buscabas? Cuéntame qué necesitas y armamos algo a tu medida.",
+    "boton_final": "Consultar por clase personalizada"
+  },
+  "horarios": {
+    "pre_titulo": "Disponibilidad",
+    "titulo": "Horarios online para clases particulares",
+    "bajada": "Para clases presenciales, consulta la disponibilidad según los horarios publicados.",
+    "boton_whatsapp": "Escríbeme por WhatsApp",
+    "mensaje_whatsapp": "Hola Elinad 👋 Quiero coordinar un horario para clases particulares.",
+    "dias": [
+      { "dia": "Lunes", "horas": ["14:00 a 16:00 hrs"], "disponible": true },
+      { "dia": "Martes", "horas": ["8:00 a 11:00 am", "15:00 a 19:00 hrs"], "disponible": true },
+      { "dia": "Miércoles", "horas": ["8:00 a 11:00 am"], "disponible": true },
+      { "dia": "Jueves", "horas": ["15:00 a 17:00 hrs"], "disponible": true },
+      { "dia": "Viernes", "horas": ["8:00 a 13:00 hrs"], "disponible": true },
+      { "dia": "Sábado", "horas": ["No disponible"], "disponible": false }
+    ]
+  },
+  "sobre_mi": {
+    "pre_titulo": "Quién soy",
+    "titulo": "Hola, soy Elinad Bass",
+    "parrafos": [
+      "Soy Profesor de Música titulado y bajista profesional con estudios en ESJAZZ. Cuento con más de 10 años de experiencia enseñando a estudiantes de distintas edades y niveles. Mi formación combina estudios universitarios de pedagogía en música y especialización en bajo eléctrico, además de una activa trayectoria como intérprete y tallerista.",
+      "Mi enfoque une técnica, musicalidad y disfrute del aprendizaje. Ya sea que estés comenzando desde cero o quieras profundizar tus conocimientos, cada clase se adapta a tus objetivos, intereses y ritmo de avance. Creo que aprender música debe ser un proceso motivador, práctico y conectado con la música que realmente te inspira."
+    ],
+    "boton": "Contáctame",
+    "mensaje_whatsapp": "Hola Elinad 👋 Me gustaría conocer más sobre ti y tu método de enseñanza.",
+    "imagen": "/images/retrato3.jpg",
+    "imagen_descripcion": "Elinad con su bajo"
+  },
+  "testimonios": {
+    "pre_titulo": "Lo que dicen",
+    "titulo": "Testimonios",
+    "listado": [
+      {
+        "nombre": "Lautaro",
+        "rol": "Estudiante de bajo eléctrico, 11 años.",
+        "comentario": "Lo que más me ha gustado es que Daniel hace las clases muy entretenidas y explica muy bien. Siempre me ayuda a mejorar y me motiva a seguir aprendiendo."
+      },
+      {
+        "nombre": "Daniela",
+        "rol": "Madre de Nahuel, estudiante de guitarra.",
+        "comentario": "Mi hijo de 8 años toma clases de guitarra con Daniel y estamos muy conformes. Tiene muy buena llegada con los niños, es paciente, responsable y cercano. Las clases se basan en canciones que a mi hijo le gustan, lo que lo motiva mucho más y le ha permitido aprender muy rápido. ¡Totalmente recomendado!"
+      },
+      {
+        "nombre": "Erika",
+        "rol": "Estudiante del Taller de Ukelele.",
+        "comentario": "Aprendí desde cero y gané mucha confianza. Recomiendo las clases a cualquier persona que quiera avanzar a su propio ritmo, con un profesor que realmente se preocupa por sus estudiantes. Además, el ambiente es excelente. ¡100% recomendado!"
+      },
+      {
+        "nombre": "Camila Muñoz",
+        "rol": "Estudiante de técnica vocal y composición.",
+        "comentario": "¡El profe Daniel es muy seco! Me ayudó mucho con el canto y también con proyectos personales de composición. Siempre mostró mucha dedicación y adaptó las clases a mi ritmo de aprendizaje."
+      }
+    ]
+  },
+  "forma_de_ensenar": {
+    "pre_titulo": "Más que clases",
+    "titulo": "Mi forma de enseñar",
+    "parrafos": [
+      "Al enseñar, me dedico a comprender los objetivos, intereses y formas de aprender de cada estudiante para favorecer un avance constante y ayudarle a desarrollar sus propias habilidades.",
+      "Creo que el aprendizaje debe ir acompañado del disfrute musical, así el proceso se vuelve más significativo y duradero.",
+      "Mi objetivo es entregarte las herramientas para desarrollar tus habilidades musicales y acompañarte en tu propio camino de aprendizaje."
+    ],
+    "boton": "Ver cursos",
+    "imagen": "/images/en-vivo.jpeg",
+    "imagen_descripcion": "Elinad tocando en vivo con micrófono"
+  },
+  "contacto_final": {
+    "pre_titulo": "¿Listo/a para empezar?",
+    "titulo": "Hablemos",
+    "descripcion": "Si tienes preguntas o quieres conocer la modalidad de las clases, escríbeme por WhatsApp. Estaré encantado de orientarte y ayudarte a encontrar la opción que mejor se adapte a tus objetivos.",
+    "boton_whatsapp": "Escríbeme por WhatsApp",
+    "mensaje_whatsapp": "Hola Elinad 👋 Tengo preguntas sobre las clases. ¿Me puedes orientar?",
+    "nota": "Sin compromiso · Responderé a la brevedad",
+    "caja_kofi": {
+      "texto": "¿Disfrutas el contenido que comparto?\nPuedes apoyar mi trabajo con un café en Ko-fi.",
+      "boton": "☕ Ko-fi"
+    }
+  }
+}

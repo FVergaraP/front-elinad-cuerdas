@@ -1,0 +1,99 @@
+[
+  {
+    "archivo": "encabezado",
+    "titulo": "Encabezado y menú",
+    "claves": [
+      "negocio.emoji_logo",
+      "negocio.nombre",
+      "menu",
+      "contacto.boton_menu"
+    ]
+  },
+  {
+    "archivo": "portada",
+    "titulo": "Portada",
+    "claves": [
+      "portada.imagen_fondo",
+      "portada.pre_titulo",
+      "portada.titulo",
+      "portada.descripcion",
+      "portada.boton_ver_cursos",
+      "portada.estadisticas"
+    ]
+  },
+  {
+    "archivo": "cursos",
+    "titulo": "Cursos y talleres",
+    "claves": [
+      "cursos_seccion.pre_titulo",
+      "cursos_seccion.titulo",
+      "cursos_seccion.bajada",
+      "cursos",
+      "cursos_seccion.tarjeta_kofi.titulo",
+      "cursos_seccion.tarjeta_kofi.texto",
+      "cursos_seccion.tarjeta_kofi.imagen",
+      "cursos_seccion.tarjeta_kofi.boton",
+      "cursos_seccion.texto_final"
+    ]
+  },
+  {
+    "archivo": "horarios",
+    "titulo": "Horarios",
+    "claves": [
+      "horarios.pre_titulo",
+      "horarios.titulo",
+      "horarios.bajada",
+      "horarios.dias"
+    ]
+  },
+  {
+    "archivo": "sobre-mi",
+    "titulo": "Sobre mí",
+    "claves": [
+      "sobre_mi.imagen",
+      "sobre_mi.pre_titulo",
+      "sobre_mi.titulo",
+      "sobre_mi.parrafos"
+    ]
+  },
+  {
+    "archivo": "testimonios",
+    "titulo": "Testimonios",
+    "claves": [
+      "testimonios.pre_titulo",
+      "testimonios.titulo",
+      "testimonios.listado"
+    ]
+  },
+  {
+    "archivo": "forma-de-ensenar",
+    "titulo": "Mi forma de enseñar",
+    "claves": [
+      "forma_de_ensenar.imagen",
+      "forma_de_ensenar.pre_titulo",
+      "forma_de_ensenar.titulo",
+      "forma_de_ensenar.parrafos",
+      "forma_de_ensenar.boton"
+    ]
+  },
+  {
+    "archivo": "contacto",
+    "titulo": "Hablemos",
+    "claves": [
+      "contacto_final.pre_titulo",
+      "contacto_final.titulo",
+      "contacto_final.descripcion",
+      "contacto_final.nota",
+      "contacto_final.caja_kofi.texto",
+      "contacto_final.caja_kofi.boton"
+    ]
+  },
+  {
+    "archivo": "pie-de-pagina",
+    "titulo": "Pie de página",
+    "claves": [
+      "negocio.nombre",
+      "negocio.descripcion_pie_de_pagina"
+    ]
+  }
+]

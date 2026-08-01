@@ -1,0 +1,62 @@
+[
+  {
+    "id": "clases-bajo-electrico",
+    "titulo": "Clases de Bajo Eléctrico",
+    "descripcion": "Para todos los niveles. Aprende técnica, groove, lectura musical, improvisación, slap, walking bass y comprensión musical con un plan adaptado a tus objetivos.\nModalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.",
+    "nivel": "Todos los niveles",
+    "modalidad": "Online",
+    "duracion": "45 min/clase",
+    "frecuencia": "A elección del estudiante",
+    "precio": 75000,
+    "moneda": "CLP",
+    "sufijo_precio": "CLP / mes",
+    "destacado": true,
+    "etiquetas": ["bajo eléctrico", "individual", "personalizado"],
+    "mensaje_whatsapp": "Hola Elinad 👋 Me interesan las *Clases de Bajo Eléctrico*. ¿Cuál es tu disponibilidad?"
+  },
+  {
+    "id": "taller-ukelele",
+    "titulo": "Taller de Ukelele",
+    "descripcion": "Taller grupal para jóvenes y adultos, desde cero o con conocimientos básicos. Aprende acordes, ritmo y repertorio a través de canciones en un ambiente cercano y entretenido.\n\n📍 Casona El Llano, San Miguel.\n\nHorarios:\n\n• Miércoles 18:00 a 19:00 hrs.\n• Miércoles 20:15 a 21:15 hrs.",
+    "nivel": "Principiante",
+    "modalidad": "Presencial",
+    "duracion": "1 hora/clase",
+    "frecuencia": "4 clases al mes",
+    "precio": 35000,
+    "moneda": "CLP",
+    "sufijo_precio": "CLP / mes",
+    "destacado": true,
+    "etiquetas": ["ukelele", "grupal", "presencial", "San Miguel"],
+    "mensaje_whatsapp": "Hola Elinad 👋 Quiero saber más sobre el *Taller de Ukelele*. ¿Cuándo comienza la próxima edición?"
+  },
+  {
+    "id": "clases-ukelele-personalizadas",
+    "titulo": "Clases de Ukelele Personalizadas",
+    "descripcion": "Clases personalizadas de ukelele para todos los niveles. Aprende acordes, ritmo, acompañamiento y repertorio con un plan adaptado a tus objetivos.\nModalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.",
+    "nivel": "Todos los niveles",
+    "modalidad": "Online",
+    "duracion": "45 min/clase",
+    "frecuencia": "A elección del estudiante",
+    "precio": 75000,
+    "moneda": "CLP",
+    "sufijo_precio": "CLP / mes",
+    "destacado": false,
+    "etiquetas": ["ukelele", "individual", "personalizado"],
+    "mensaje_whatsapp": "Hola Elinad 👋 Me interesan las *Clases de Ukelele Personalizadas*. ¿Cuál es tu disponibilidad?"
+  },
+  {
+    "id": "clases-musica-personalizadas",
+    "titulo": "Clases de Música Personalizadas",
+    "descripcion": "Clases personalizadas de guitarra, teoría musical, lectura, entrenamiento auditivo, composición, interpretación y otros contenidos, con un plan adaptado a tus objetivos. Modalidad preferentemente online; opción presencial según disponibilidad, con un valor adicional por traslado.",
+    "nivel": "Todos los niveles",
+    "modalidad": "Online",
+    "duracion": "45 min/clase",
+    "frecuencia": "A elección del estudiante",
+    "precio": 75000,
+    "moneda": "CLP",
+    "sufijo_precio": "CLP / mes",
+    "destacado": false,
+    "etiquetas": ["guitarra", "teoría", "personalizado", "online"],
+    "mensaje_whatsapp": "Hola Elinad 👋 Me interesan las *Clases de Música Personalizadas*. ¿Puedes contarme más sobre el contenido y horarios?"
+  }
+]

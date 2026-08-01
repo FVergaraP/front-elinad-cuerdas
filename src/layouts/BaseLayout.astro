@@ -4,6 +4,11 @@ import ThemeSwitcher from '@/components/ui/ThemeSwitcher.astro';
 import FontSwitcher from '@/components/ui/FontSwitcher.astro';
 import { DEFAULT_THEME, THEME_STORAGE_KEY } from '@/lib/themes';
 import { DEFAULT_FONT, FONT_STORAGE_KEY } from '@/lib/fonts';
+import { withBase, absoluteUrl } from '@/lib/url';
+import SocialIcon from '@/components/ui/SocialIcon.astro';
+import { contenido } from '@/data/content';
+import { getCursos } from '@/data/courses';
+import { buildJsonLd } from '@/lib/seo';
 
 interface Props {
   title?: string;
@@ -12,12 +17,21 @@ interface Props {
 }
 
 const {
-  title = 'Elinad Bass — Clases y Talleres de Bajo, Ukelele y Música',
-  description = 'Aprende bajo eléctrico, ukelele y música con Elinad Bass: clases personalizadas, talleres grupales y formación musical para todos los niveles en Santiago de Chile.',
-  image = '/og-image.jpg',
+  title = contenido.seo.tituloPestana,
+  description = contenido.seo.descripcionBuscadores,
+  image = contenido.seo.imagenAlCompartir,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const socialImageUrl = absoluteUrl(image, Astro.site);
+const jsonLd = buildJsonLd(getCursos(), Astro.site);
+
+// El color de marca de Ko-fi va literal para que Tailwind lo incluya en el CSS.
+const HOVER_RED = {
+  instagram: 'hover:text-theme-accent',
+  tiktok: 'hover:text-theme-accent',
+  kofi: 'hover:text-[#FF5E5B]',
+} as const;
 ---
 
 <!doctype html>
@@ -38,7 +52,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:image" content={socialImageUrl} />
     <meta property="og:locale" content="es_CL" />
     <meta property="og:site_name" content="Elinad Bass" />
 
@@ -46,66 +60,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+    <meta name="twitter:image" content={socialImageUrl} />
 
-    <!-- Schema.org: Profesora de bajo y ukelele / Negocio local -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": `${Astro.site}#person`,
-          "name": "Elinad Bass",
-          "jobTitle": "Profesor de Música y Bajista Profesional",
-          "description": "Profesor de Música y bajista profesional con más de 10 años de experiencia en Santiago de Chile. Clases de bajo eléctrico, ukelele, guitarra y formación musical.",
-          "url": String(Astro.site),
-          "sameAs": [
-            "https://www.instagram.com/elinadbass/",
-            "https://www.tiktok.com/@elinad.bass"
-          ]
-        },
-        {
-          "@type": "LocalBusiness",
-          "@id": `${Astro.site}#business`,
-          "name": "Elinad Bass",
-          "description": "Clases y talleres de bajo eléctrico, ukelele y música en Santiago de Chile. Online y presencial para todos los niveles.",
-          "url": String(Astro.site),
-          "telephone": "+56965017566",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Santiago",
-            "addressRegion": "Región Metropolitana",
-            "addressCountry": "CL"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": -33.4489,
-            "longitude": -70.6693
-          },
-          "priceRange": "$$",
-          "currenciesAccepted": "CLP",
-          "paymentAccepted": "Transferencia bancaria, efectivo",
-          "openingHours": "Mo-Sa 09:00-21:00",
-          "sameAs": [
-            "https://www.instagram.com/elinadbass/",
-            "https://www.tiktok.com/@elinad.bass"
-          ],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Cursos de bajo y ukelele",
-            "itemListElement": [
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Clases de bajo eléctrico para principiantes" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Clases de bajo intermedio" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Taller de ukelele" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Clases de bajo y ukelele online" } }
-            ]
-          }
-        }
-      ]
-    })} />
+    <!-- Schema.org — se genera desde el contenido, ver src/lib/seo.ts -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
 
     <!-- Todas las fuentes cargadas de una vez para que el cambio sea instantáneo -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -135,23 +96,25 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     >
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         <!-- Logo / Nombre -->
-        <a href="/" class="flex items-center gap-2.5 group" aria-label="Inicio — Elinad Bass">
+        <a href={withBase('/')} class="flex items-center gap-2.5 group" aria-label={`Inicio — ${contenido.negocio.nombre}`}>
           <span
             class="text-2xl leading-none select-none group-hover:scale-110 transition-transform"
             aria-hidden="true"
-          >🎸</span>
-          <span class="font-display font-bold text-lg text-theme-text group-hover:text-theme-accent transition-colors">
-            Elinad Bass
+            data-key="negocio.emoji_logo"
+          >{contenido.negocio.emojiLogo}</span>
+          <span
+            class="font-display font-bold text-lg text-theme-text group-hover:text-theme-accent transition-colors"
+            data-key="negocio.nombre"
+          >
+            {contenido.negocio.nombre}
           </span>
         </a>
 
         <!-- Navegación desktop -->
-        <nav class="hidden md:flex items-center gap-6" aria-label="Navegación principal">
-          <a href="#cursos"       class="text-sm text-theme-muted hover:text-theme-text transition-colors">Cursos</a>
-          <a href="#horarios"    class="text-sm text-theme-muted hover:text-theme-text transition-colors">Horarios</a>
-          <a href="#sobre-mi"    class="text-sm text-theme-muted hover:text-theme-text transition-colors">Sobre mí</a>
-          <a href="#testimonios" class="text-sm text-theme-muted hover:text-theme-text transition-colors">Testimonios</a>
-          <a href="#contacto"    class="text-sm text-theme-muted hover:text-theme-text transition-colors">Contacto</a>
+        <nav class="hidden md:flex items-center gap-6" aria-label="Navegación principal" data-key="menu">
+          {contenido.menu.map(({ texto, ancla }) => (
+            <a href={ancla} class="text-sm text-theme-muted hover:text-theme-text transition-colors">{texto}</a>
+          ))}
         </nav>
 
         <!-- Acciones -->
@@ -160,49 +123,31 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
           <span class="hidden"><FontSwitcher /></span>
 
           <!-- Redes sociales -->
-          <a
-            href="https://www.instagram.com/elinadbass/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hidden sm:flex p-2 rounded-lg text-theme-muted hover:text-theme-accent hover:bg-theme-surface transition-colors"
-            aria-label="Instagram de Elinad"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-          </a>
-          <a
-            href="https://www.tiktok.com/@elinad.bass"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hidden sm:flex p-2 rounded-lg text-theme-muted hover:text-theme-accent hover:bg-theme-surface transition-colors"
-            aria-label="TikTok de Elinad"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
-            </svg>
-          </a>
-          <a
-            href="https://ko-fi.com/elinadbass"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hidden sm:flex p-2 rounded-lg text-theme-muted hover:text-[#FF5E5B] hover:bg-theme-surface transition-colors"
-            aria-label="Apoyar a Elinad en Ko-fi"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 2.692.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/>
-            </svg>
-          </a>
+          {contenido.redes.map(({ nombre, url, icono }) => (
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class:list={[
+                'hidden sm:flex p-2 rounded-lg text-theme-muted hover:bg-theme-surface transition-colors',
+                HOVER_RED[icono],
+              ]}
+              aria-label={`${nombre} de ${contenido.negocio.nombre}`}
+            >
+              <SocialIcon icono={icono} />
+            </a>
+          ))}
 
-          <!-- CTA WhatsApp -->
+          <!-- CTA WhatsApp — usa el perfil de Business, sin mensaje prellenado -->
           <a
-            href="https://wa.me/message/73YGTSCY67ZWP1"
+            href={contenido.contacto.whatsappLinkPerfil}
             target="_blank"
             rel="noopener noreferrer"
             class="btn-primary hidden sm:inline-flex text-xs px-4 py-2"
             aria-label="Contactar por WhatsApp"
+            data-key="contacto.boton_menu"
           >
-            Escríbeme
+            {contenido.contacto.botonMenu}
           </a>
 
           <!-- Hamburger mobile -->
@@ -235,13 +180,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         aria-label="Menú móvil"
       >
         <nav class="flex flex-col px-4 py-4 gap-1">
-          <a href="#cursos"       class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Cursos</a>
-          <a href="#horarios"    class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Horarios</a>
-          <a href="#sobre-mi"    class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Sobre mí</a>
-          <a href="#testimonios" class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Testimonios</a>
-          <a href="#contacto"    class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">Contacto</a>
+          {contenido.menu.map(({ texto, ancla }) => (
+            <a href={ancla} class="py-2.5 text-sm text-theme-muted hover:text-theme-accent transition-colors">{texto}</a>
+          ))}
           <a
-            href="https://wa.me/message/73YGTSCY67ZWP1"
+            href={contenido.contacto.whatsappLinkPerfil}
             target="_blank" rel="noopener noreferrer"
             class="btn-primary mt-2 justify-center text-xs"
           >
@@ -249,36 +192,19 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
           </a>
           <!-- Redes sociales mobile -->
           <div class="flex items-center gap-4 pt-3 border-t border-theme-border mt-1">
-            <a
-              href="https://www.instagram.com/elinadbass/"
-              target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 text-sm text-theme-muted hover:text-theme-accent transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-              Instagram
-            </a>
-            <a
-              href="https://www.tiktok.com/@elinad.bass"
-              target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 text-sm text-theme-muted hover:text-theme-accent transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
-              </svg>
-              TikTok
-            </a>
-            <a
-              href="https://ko-fi.com/elinadbass"
-              target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 text-sm text-theme-muted hover:text-[#FF5E5B] transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 2.692.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/>
-              </svg>
-              Ko-fi
-            </a>
+            {contenido.redes.map(({ nombre, url, icono }) => (
+              <a
+                href={url}
+                target="_blank" rel="noopener noreferrer"
+                class:list={[
+                  'flex items-center gap-2 text-sm text-theme-muted transition-colors',
+                  HOVER_RED[icono],
+                ]}
+              >
+                <SocialIcon icono={icono} size={16} />
+                {nombre}
+              </a>
+            ))}
           </div>
         </nav>
       </div>
@@ -294,55 +220,33 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
           <div class="text-center md:text-left">
-            <span class="font-display font-bold text-theme-text">Elinad Bass</span>
-            <p class="text-xs text-theme-muted mt-1">
-              Clases y talleres de bajo, ukelele y música · Santiago, Chile
+            <span class="font-display font-bold text-theme-text" data-key="negocio.nombre">{contenido.negocio.nombre}</span>
+            <p class="text-xs text-theme-muted mt-1" data-key="negocio.descripcion_pie_de_pagina">
+              {contenido.negocio.descripcionPieDePagina}
             </p>
           </div>
           <div class="flex items-center gap-5 text-xs text-theme-muted">
             <a href="#cursos"   class="hover:text-theme-accent transition-colors">Cursos</a>
             <a href="#contacto" class="hover:text-theme-accent transition-colors">Contacto</a>
             <a
-              href="https://wa.me/message/73YGTSCY67ZWP1"
+              href={contenido.contacto.whatsappLinkPerfil}
               target="_blank" rel="noopener noreferrer"
               class="hover:text-theme-accent transition-colors"
             >WhatsApp</a>
-            <a
-              href="https://www.instagram.com/elinadbass/"
-              target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-1.5 hover:text-theme-accent transition-colors"
-              aria-label="Instagram"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-              Instagram
-            </a>
-            <a
-              href="https://www.tiktok.com/@elinad.bass"
-              target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-1.5 hover:text-theme-accent transition-colors"
-              aria-label="TikTok"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
-              </svg>
-              TikTok
-            </a>
-            <a
-              href="https://ko-fi.com/elinadbass"
-              target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-1.5 hover:text-[#FF5E5B] transition-colors"
-              aria-label="Ko-fi"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 2.692.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/>
-              </svg>
-              Ko-fi
-            </a>
+            {contenido.redes.map(({ nombre, url, icono }) => (
+              <a
+                href={url}
+                target="_blank" rel="noopener noreferrer"
+                class:list={['flex items-center gap-1.5 transition-colors', HOVER_RED[icono]]}
+                aria-label={nombre}
+              >
+                <SocialIcon icono={icono} size={14} />
+                {nombre}
+              </a>
+            ))}
           </div>
           <p class="text-xs text-theme-muted text-center">
-            © {new Date().getFullYear()} Elinad Bass. Todos los derechos reservados.
+            © {new Date().getFullYear()} {contenido.negocio.nombre}. Todos los derechos reservados.
           </p>
         </div>
       </div>
